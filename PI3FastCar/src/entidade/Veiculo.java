@@ -10,24 +10,24 @@ package entidade;
  * @author Kleiton
  */
 public class Veiculo {
-    private int codigo_veiculo;
+    private int codigoVeiculo;
     private String placa;
     private String cor;
     private String modelo;
 
     public Veiculo(int codigo_veiculo, String placa, String cor, String modelo) {
-        this.codigo_veiculo = codigo_veiculo;
+        this.codigoVeiculo = codigoVeiculo;
         this.placa = placa;
         this.cor = cor;
         this.modelo = modelo;
     }
 
     public int getCodigo_veiculo() {
-        return codigo_veiculo;
+        return codigoVeiculo;
     }
 
-    public void setCodigo_veiculo(int codigo_veiculo) {
-        this.codigo_veiculo = codigo_veiculo;
+    public void setCodigo_veiculo(int codigoVeiculo) {
+        this.codigoVeiculo = codigoVeiculo;
     }
 
     public String getPlaca() {

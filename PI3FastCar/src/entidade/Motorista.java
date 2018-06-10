@@ -10,12 +10,12 @@ package entidade;
  * @author Kleiton
  */
 public class Motorista {
-    private int condigo_motorista;
+    private int condigoMotorista;
     private String nome;
     private long cpf;
 
     public Motorista(int condigo_motorista, String nome, long cpf) {
-        this.condigo_motorista = condigo_motorista;
+        this.condigoMotorista = condigo_motorista;
         this.nome = nome;
         this.cpf = cpf;
     }
@@ -25,11 +25,11 @@ public class Motorista {
     }
 
     public int getCondigo_motorista() {
-        return condigo_motorista;
+        return condigoMotorista;
     }
 
-    public void setCondigo_motorista(int condigo_motorista) {
-        this.condigo_motorista = condigo_motorista;
+    public void setCondigo_motorista(int condigoMotorista) {
+        this.condigoMotorista = condigoMotorista;
     }
 
     public String getNome() {
