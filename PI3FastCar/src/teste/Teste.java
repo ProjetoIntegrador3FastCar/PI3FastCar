@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pi3fastcar;
+package teste;
 
-import dadosValidacao.Validacao;
+import entidade.Motorista;
+import util.Validacao;
 
 /**
  *
  * @author Kleiton
  */
-public class PI3FastCar {
+public class Teste {
 
     /**
      * @param args the command line arguments
