@@ -9,7 +9,7 @@ package util;
  *
  * @author rodri
  */
-public class No<T> {
+public class No<T> implements Comparable<T>{
     
     private T objeto;
     private No proximoNo;
@@ -36,5 +36,11 @@ public class No<T> {
 
     public void setProximoNo(No proximoNo) {
         this.proximoNo = proximoNo;
+    }
+
+    @Override
+    public int compareTo(T o) {
+        if(this.getObjeto().equals(o)) return 0;
+        else return -1;
     }
 }

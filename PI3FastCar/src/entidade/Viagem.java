@@ -6,12 +6,13 @@
 package entidade;
 
 import java.sql.Date;
+import util.Codigo;
 
 /**
  *
  * @author rodri
  */
-public class Viagem {
+public class Viagem implements Comparable<Viagem>, Codigo{
     
     
     
@@ -20,21 +21,18 @@ public class Viagem {
     private String localDestino;
     private double valorViagem;
     private Date dataViagem;
-    private String formaPagamento;
     private Motorista motorista;
 
     public Viagem() {
     }
 
     public Viagem(int codigoViagem, String localOrigem, String localDestino,
-            double valorViagem, Date dataViagem, String formaPagamento, 
-            Motorista motorista) {
+            double valorViagem, Date dataViagem, Motorista motorista) {
         this.codigoViagem = codigoViagem;
         this.localOrigem = localOrigem;
         this.localDestino = localDestino;
         this.valorViagem = valorViagem;
         this.dataViagem = dataViagem;
-        this.formaPagamento = formaPagamento;
         this.motorista = motorista;
     }
 
@@ -42,8 +40,9 @@ public class Viagem {
     public int getCodigoViagem() {
         return codigoViagem;
     }
-
-    public void setCodigoViagem(int codigoViagem) {
+    
+    @Override
+    public void setCodigoTipo(int codigoViagem) {
         this.codigoViagem = codigoViagem;
     }
 
@@ -78,14 +77,6 @@ public class Viagem {
     public void setDataViagem(Date dataViagem) {
         this.dataViagem = dataViagem;
     }
-
-    public String getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(String formaPagamento) {
-        this.formaPagamento = formaPagamento;
-    }
     
     public Motorista getMotorista() {
         return motorista;
@@ -93,6 +84,13 @@ public class Viagem {
 
     public void setMotorista(Motorista motorista) {
         this.motorista = motorista;
+    }
+
+    @Override
+    public int compareTo(Viagem objV) {
+        if(this.codigoViagem > objV.codigoViagem) return 1;
+        else if (this.codigoViagem == objV.codigoViagem) return 0;
+        else return -1;
     }
     
 }
