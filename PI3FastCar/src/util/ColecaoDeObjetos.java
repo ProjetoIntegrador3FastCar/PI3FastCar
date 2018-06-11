@@ -30,14 +30,4 @@ public class ColecaoDeObjetos<T> implements Iterator<T>{
             No aux = lista.getInicio();
             return (T) aux.getObjeto();
         }
-        
-        @Override
-        public void remove() {
-            
-        }
-
-        @Override
-        public void forEachRemaining(Consumer<? super T> action) {
-            Iterator.super.forEachRemaining(action); //To change body of generated methods, choose Tools | Templates.
-        }
 }

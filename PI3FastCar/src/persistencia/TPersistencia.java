@@ -32,27 +32,31 @@ public abstract class TPersistencia<T>{
     public abstract void excluir(int cod) throws SQLException;
     public abstract T consultar(int cod) throws SQLException;
     public abstract Iterator<T> listar() throws SQLException;
-    public abstract Iterator<T> listarDescricao(int id) throws SQLException;
-
+    public abstract Iterator<T> listarDescricao(int opcao, String string) throws SQLException;
     public abstract PreparedStatement prepararDeclaracao(T obj, Connection cnn, String sql) throws SQLException;
     
     public void alterarOuIncluir(T obj, String... sql) throws SQLException{
+        Connection cnn = util.SConexao.getConexao();
         
         String sql2 = sql[0];
         
-        Connection cnn = util.SConexao.getConexao();
+        cnn.setAutoCommit(false);
+        try{
+            PreparedStatement prd = prepararDeclaracao(obj, cnn, sql2);
 
-        PreparedStatement prd = prepararDeclaracao(obj, cnn, sql2);
-        
-        prd.execute();
-        
-        if(sql.length > 1){
-            String sql3 = sql[1];
-            Statement stm = cnn.createStatement();
-            ResultSet rs = stm.executeQuery(sql3);
-            if (rs.next()) {
-                ((Codigo)obj).setCodigoTipo(rs.getInt("codigo"));
+            prd.execute();
+
+            if(sql.length > 1){
+                String sql3 = sql[1];
+                Statement stm = cnn.createStatement();
+                ResultSet rs = stm.executeQuery(sql3);
+                if (rs.next()) {
+                    ((Codigo)obj).setCodigoTipo(rs.getInt("codigo"));
+                }
             }
+        }catch(Exception e){
+            cnn.rollback();
         }
+        cnn.close();
     }
 }

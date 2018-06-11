@@ -14,8 +14,8 @@ import java.util.function.Consumer;
  */
 public class Lista<T>{
     
-    private No inicio;
-    private No fim;
+    private No<T> inicio;
+    private No<T> fim;
 
     public Lista() {
     }
@@ -32,8 +32,8 @@ public class Lista<T>{
         return null;
     }
     
-    public void insereNoInicio(T elemento){
-        No novo = new No(elemento, null);
+    public void insereNoInicio(Comparable elemento){
+        No<T> novo = new No(elemento, null);
         
         if(eVazia()) fim = novo;
         else novo.setProximoNo(inicio);
@@ -41,7 +41,41 @@ public class Lista<T>{
         inicio = novo;
     }
     
-    public T retirarElemento(Comparable elemento){
+    public void insereNoFim(Comparable elemento) {
+        No<T> novo = new No(elemento, null);
+
+        if (eVazia()) {
+            novo.setProximoNo(novo);
+            fim = novo;
+        } else {
+            novo.setProximoNo(fim.getProximoNo());
+            fim.setProximoNo(novo);
+            fim = novo;
+        }
+    }
+    
+    public void inserirOrdenado(Comparable elemento) {
+        No<T> novo = new No(elemento, null);
+        if (eVazia()) {
+            inicio = novo;
+            fim = novo;
+        } else {
+            No ant = null;
+            No prox = inicio;
+            while (prox != null && elemento.compareTo(prox.getObjeto()) > 0) {
+                ant = prox;
+                prox = prox.getProximoNo();
+            }
+            if (ant == null) {
+                insereNoInicio(elemento);
+            } else {
+                ant.setProximoNo(novo);
+                novo.setProximoNo(prox);
+            }
+        }
+    }
+    
+    public No<T> retirarElemento(Comparable elemento){
         if(elemento == null) return null;
         if(!eVazia()) {
             No prox = inicio;
@@ -52,18 +86,18 @@ public class Lista<T>{
                         if(inicio.compareTo(fim.getObjeto()) == 0){
                             inicio = null;
                             fim = null;
-                            return (T) prox.getObjeto();
+                            return prox;
                         }else if(prox.getProximoNo() == null){
                             ultimo.setProximoNo(null);
                             fim = ultimo;
-                            return (T) prox.getObjeto();
+                            return prox;
                         }
                         else if(ultimo == null){
                             inicio = prox.getProximoNo();
-                            return (T) prox.getObjeto();
+                            return prox;
                         }else {
                             ultimo.setProximoNo(prox.getProximoNo());
-                            return (T) prox.getObjeto();
+                            return prox;
                         }
                     }
                     else if(prox.compareTo(elemento) > 0){
@@ -77,19 +111,19 @@ public class Lista<T>{
         return null;
     }
 
-    public No getInicio() {
+    public No<T> getInicio() {
         return inicio;
     }
 
-    public void setInicio(No inicio) {
+    public void setInicio(No<T> inicio) {
         this.inicio = inicio;
     }
 
-    public No getFim() {
+    public No<T> getFim() {
         return fim;
     }
 
-    public void setFim(No fim) {
+    public void setFim(No<T> fim) {
         this.fim = fim;
     }
 }
