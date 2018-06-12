@@ -9,19 +9,19 @@ package entidade;
  *
  * @author andre
  */
-public class EAvaliacao {
+public class Avaliacao {
     private int codigoAvaliacao;
-    private Motorista codMotorista;
-    private EPassageiro codPassageiro;
+    private Motorista motorista;
+    private Passageiro passageiro;
     private int avaliacao;
     
-    public EAvaliacao(){
+    public Avaliacao(){
         
     }
-    public EAvaliacao(int codigo_avaliacao, int cod_motorista, EPassageiro cod_passageiro, int avaliacao){
+    public Avaliacao(int codigo_avaliacao, Motorista motorista, Passageiro passageiro, int avaliacao){
         this.codigoAvaliacao = codigo_avaliacao;
-        this.codMotorista = cod_motorista;
-        this.codPassageiro = cod_passageiro;
+        this.motorista = motorista;
+        this.passageiro = passageiro;
         this.avaliacao = avaliacao;
     }
 
@@ -33,20 +33,20 @@ public class EAvaliacao {
         this.codigoAvaliacao = codigoAvaliacao;
     }
 
-    public int getCodMotorista() {
-        return codMotorista;
+    public Motorista getMotorista() {
+        return motorista;
     }
 
-    public void setCodMotorista(int codMotorista) {
-        this.codMotorista = codMotorista;
+    public void setCodMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 
-    public EPassageiro getCodPassageiro() {
-        return codPassageiro;
+    public Passageiro getPassageiro() {
+        return passageiro;
     }
 
-    public void setCodPassageiro(EPassageiro codPassageiro) {
-        this.codPassageiro = codPassageiro;
+    public void setPassageiro(Passageiro passageiro) {
+        this.passageiro = passageiro;
     }
 
     public int getAvaliacao() {

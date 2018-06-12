@@ -5,19 +5,21 @@
  */
 package entidade;
 
+import util.Codigo;
+
 /**
  *
  * @author andre
  */
-public class EPassageiro {
+public class Passageiro implements Codigo{
     private int codigo_passageiro;
     private String nome;
     private String numero_celular;
     
-    public EPassageiro(){
+    public Passageiro(){
         
     }
-    public EPassageiro(int codigo_passageiro, String nome, String numero_celular){
+    public Passageiro(int codigo_passageiro, String nome, String numero_celular){
         this.codigo_passageiro = codigo_passageiro;
         this.nome = nome;
         this.numero_celular = numero_celular;
@@ -26,8 +28,8 @@ public class EPassageiro {
     public int getCodigo_passageiro() {
         return codigo_passageiro;
     }
-    
-    public void setCodigo_passageiro(int codigo_passageiro) {
+    @Override
+    public void setCodigoTipo(int codigo_passageiro) {
         this.codigo_passageiro = codigo_passageiro;
     }
     
