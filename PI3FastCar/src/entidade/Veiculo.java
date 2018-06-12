@@ -5,29 +5,41 @@
  */
 package entidade;
 
+import util.CategoriaAbstrata;
+
 /**
  *
  * @author Kleiton
  */
 public class Veiculo {
     private int codigoVeiculo;
+    private CategoriaAbstrata categoria;
     private String placa;
     private String cor;
     private String modelo;
 
-    public Veiculo(int codigo_veiculo, String placa, String cor, String modelo) {
+    public Veiculo(int codigoVeiculo, CategoriaAbstrata categoria, String placa, String cor, String modelo) {
         this.codigoVeiculo = codigoVeiculo;
+        this.categoria = categoria;
         this.placa = placa;
         this.cor = cor;
         this.modelo = modelo;
     }
 
-    public int getCodigo_veiculo() {
+    public int getCodigoVeiculo() {
         return codigoVeiculo;
     }
 
-    public void setCodigo_veiculo(int codigoVeiculo) {
+    public void setCodigoVeiculo(int codigoVeiculo) {
         this.codigoVeiculo = codigoVeiculo;
+    }
+
+    public CategoriaAbstrata getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaAbstrata categoria) {
+        this.categoria = categoria;
     }
 
     public String getPlaca() {
@@ -53,6 +65,9 @@ public class Veiculo {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
+
+    
+    
     
     
 }
