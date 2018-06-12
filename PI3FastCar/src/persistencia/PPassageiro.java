@@ -72,7 +72,7 @@ public class PPassageiro extends TPersistencia<Passageiro>{
         if (rs.next()) {
             tipo.setCodigoTipo(rs.getInt("codigo_passageiro"));
             tipo.setNome(rs.getString("nome"));
-            tipo.setNumero_celular(rs.getString("numero_celular"));
+            tipo.setNumeroCelular(rs.getString("numero_celular"));
         }
 
         return tipo;
@@ -94,7 +94,7 @@ public class PPassageiro extends TPersistencia<Passageiro>{
             Passageiro tipo = new Passageiro();
             tipo.setCodigoTipo(rs.getInt("codigo_passageiro"));
             tipo.setNome(rs.getString("nome"));
-            tipo.setNumero_celular(rs.getString("numero_celular"));
+            tipo.setNumeroCelular(rs.getString("numero_celular"));
             lista.add(tipo);
         }
 
@@ -103,7 +103,7 @@ public class PPassageiro extends TPersistencia<Passageiro>{
     }
 
     @Override
-    public Iterator<Passageiro> listarDescricao(int opcao, String string) throws SQLException {
+    public Iterator<Passageiro> listarPorFiltro(int opcao, String string) throws SQLException {
         String sql = "SELECT * FROM passageiro WHERE nome LIKE ? ORDER BY codigo_passageiro;";
         String sql2 = "SELECT * FROM passageiro WHERE numero_celular LIKE ? ORDER BY codigo_passageiro;";
         
@@ -137,10 +137,10 @@ public class PPassageiro extends TPersistencia<Passageiro>{
         
         
         prd.setString(1, passageiro.getNome());
-        prd.setString(2, passageiro.getNumero_celular());
+        prd.setString(2, passageiro.getNumeroCelular());
         
-        if(passageiro.getCodigo_passageiro()> 0)
-            prd.setInt(6, passageiro.getCodigo_passageiro());
+        if(passageiro.getCodigoPassageiro()> 0)
+            prd.setInt(6, passageiro.getCodigoPassageiro());
         
         return prd;
     }

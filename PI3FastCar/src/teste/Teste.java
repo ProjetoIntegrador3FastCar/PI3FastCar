@@ -8,7 +8,7 @@ package teste;
 import entidade.Motorista;
 import entidade.Viagem;
 import java.util.ArrayList;
-import util.Lista;
+import util.estruturadedados.Lista;
 import util.Validacao;
 
 /**

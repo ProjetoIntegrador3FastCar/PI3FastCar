@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package util;
+package util.estruturadedados;
+
+import entidade.Passageiro;
 
 /**
  *
  * @author rodri
  */
-public class No<T> implements Comparable<T>{
+public class No implements Comparable<No>{
     
-    private T objeto;
+    private Passageiro objeto;
     private No proximoNo;
+    private int index;
     
-    public No(T objeto, No proximoNo){
+    public No(Passageiro objeto, No proximoNo){
         this.objeto = objeto;
         this.proximoNo = proximoNo;
     }
@@ -22,11 +25,19 @@ public class No<T> implements Comparable<T>{
     public No() {
     }
 
-    public T getObjeto() {
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+    
+    public Passageiro getObjeto() {
         return objeto;
     }
 
-    public void setObjeto(T objeto) {
+    public void setObjeto(Passageiro objeto) {
         this.objeto = objeto;
     }
 
@@ -39,8 +50,8 @@ public class No<T> implements Comparable<T>{
     }
 
     @Override
-    public int compareTo(T o) {
-        if(this.getObjeto().equals(o)) return 0;
-        else return -1;
+    public int compareTo(No o) {
+        if(this.getObjeto().equals(o.getObjeto())) return 0;
+        else return 1;
     }
 }

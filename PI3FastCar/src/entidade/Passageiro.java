@@ -5,32 +5,43 @@
  */
 package entidade;
 
-import util.Codigo;
+import entidade.observer.DadosDaViagem;
+import util.interfaces.Codigo;
+import util.interfaces.observer.MostrarDados;
+import util.interfaces.observer.Observador;
+import util.interfaces.observer.Sujeito;
 
 /**
  *
  * @author andre
  */
-public class Passageiro implements Codigo{
-    private int codigo_passageiro;
+public class Passageiro implements Codigo, Comparable<Passageiro>, Observador, MostrarDados{
+    private int codigoPassageiro;
     private String nome;
-    private String numero_celular;
+    private String numeroCelular;
+    private DadosDaViagem dados;
+    private Sujeito central;
     
-    public Passageiro(){
-        
+    public Passageiro(){}
+    
+    public Passageiro(Sujeito central){
+        this.central = central;
+        this.central.incluirObservador(this);
     }
-    public Passageiro(int codigo_passageiro, String nome, String numero_celular){
-        this.codigo_passageiro = codigo_passageiro;
+    
+    public Passageiro(int codigoPassageiro, String nome, String numeroCelular){
+        this.codigoPassageiro = codigoPassageiro;
         this.nome = nome;
-        this.numero_celular = numero_celular;
+        this.numeroCelular = numeroCelular;
     }
     
-    public int getCodigo_passageiro() {
-        return codigo_passageiro;
+    public int getCodigoPassageiro() {
+        return codigoPassageiro;
     }
+    
     @Override
     public void setCodigoTipo(int codigo_passageiro) {
-        this.codigo_passageiro = codigo_passageiro;
+        this.codigoPassageiro = codigo_passageiro;
     }
     
     public String getNome() {
@@ -41,12 +52,31 @@ public class Passageiro implements Codigo{
         this.nome = nome;
     }
     
-    public String getNumero_celular() {
-        return numero_celular;
+    public String getNumeroCelular() {
+        return numeroCelular;
     }
     
-    public void setNumero_celular(String numero_celular) {
-        this.numero_celular = numero_celular;
+    public void setNumeroCelular(String numeroCelular) {
+        this.numeroCelular = numeroCelular;
+    }
+
+    @Override
+    public int compareTo(Passageiro obj) {
+        if(this.getCodigoPassageiro() > obj.getCodigoPassageiro()) return 1;
+        else if (this.getCodigoPassageiro() == obj.getCodigoPassageiro()) return 0;
+        else return -1;
+    }
+
+    @Override
+    public void atualizar(DadosDaViagem dados) {
+        this.dados = dados;
+        mostrar();
+    }
+
+    @Override
+    public void mostrar() {
+        System.out.println("-------- Dados para avaliação --------");
+        System.out.printf("Motorista: %s", dados.getMotorista().getNome());
     }
     
 }

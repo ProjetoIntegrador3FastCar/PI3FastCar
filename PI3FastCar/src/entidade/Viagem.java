@@ -6,7 +6,7 @@
 package entidade;
 
 import java.sql.Date;
-import util.Codigo;
+import util.interfaces.Codigo;
 
 /**
  *

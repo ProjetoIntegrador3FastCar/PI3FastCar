@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package util;
-
-import java.sql.SQLException;
+package util.interfaces;
 
 /**
  *
  * @author rodri
  */
-public abstract class CategoriaAbstrata {
-    
-    protected int idCategoria;
-    protected String descricao;
-    
-    
+public interface Codigo {
+    void setCodigoTipo(int codigo);
 }

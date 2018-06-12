@@ -20,9 +20,7 @@ public class Motorista {
         this.cpf = cpf;
     }
 
-    public Motorista() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Motorista() {}
 
     public int getCodigoMotorista() {
         return codigoMotorista;

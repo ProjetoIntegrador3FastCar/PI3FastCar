@@ -91,7 +91,7 @@ public class PViagem extends TPersistencia<Viagem>{
     }
 
     @Override
-    public Iterator<Viagem> listarDescricao(int opcao, String string) throws SQLException {
+    public Iterator<Viagem> listarPorFiltro(int opcao, String filtro) throws SQLException {
         String sql = "SELECT * FROM viagem WHERE codigo_viagem = ? ORDER BY codigo_viagem;";
         String sql2 = "SELECT * FROM viagem WHERE TO_CHAR(data_viagem, 'DD/MM/YYYY') LIKE ? ORDER BY codigo_viagem;";
         String sql3 = "SELECT * FROM viagem WHERE codigo_motorista = ? ORDER BY codigo_viagem;";
@@ -101,15 +101,15 @@ public class PViagem extends TPersistencia<Viagem>{
         switch (opcao) {
             case 0:
                 prd = cnn.prepareStatement(sql);
-                prd.setInt(1, Integer.parseInt(string));
+                prd.setInt(1, Integer.parseInt(filtro));
                 break;
             case 1:
                 prd = cnn.prepareStatement(sql2);
-                prd.setString(1, "%" + string + "%");
+                prd.setString(1, "%" + filtro + "%");
                 break;
             default:
                 prd = cnn.prepareStatement(sql3);
-                prd.setInt(1, Integer.parseInt(string));
+                prd.setInt(1, Integer.parseInt(filtro));
                 break;
         }
         
