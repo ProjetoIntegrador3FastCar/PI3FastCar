@@ -5,7 +5,7 @@
  */
 package entidade;
 
-import util.CategoriaAbstrata;
+import util.fabricaabstrata.CategoriaAbstrata;
 
 /**
  *

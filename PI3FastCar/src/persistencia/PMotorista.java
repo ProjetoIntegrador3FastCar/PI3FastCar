@@ -23,7 +23,6 @@ public class PMotorista extends TPersistencia<Motorista>{
     public void incluir(Motorista motorista) throws SQLException{
         
         String sql = "INSERT INTO motorista(nome, cpf)"
-//                + " valor_viagem, data_viagem, cod_motorista)"
                 + " VALUES(?, ?);";
         
         String sql2 = "SELECT currval('codigo_motorista') as codigo";
@@ -63,7 +62,7 @@ public class PMotorista extends TPersistencia<Motorista>{
         
         ResultSet rs = prd.executeQuery();
         if(rs.next()){
-            return new Motorista(rs.getInt(1), rs.getString(2), rs.getLong(3));
+            return new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3));
         }
         
         return null;
@@ -80,14 +79,14 @@ public class PMotorista extends TPersistencia<Motorista>{
         ArrayList<Motorista> lista = new ArrayList<>();
         
         while(rs.next()){
-            lista.add(new Motorista(rs.getInt(1), rs.getString(2), rs.getLong(3)));
+            lista.add(new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3)));
         }
         
         return lista.iterator();
     }
 
     @Override
-    public Iterator<Motorista> listarDescricao(int opcao, String string) throws SQLException {
+    public Iterator<Motorista> listarPorFiltro(int opcao, String string) throws SQLException {
         String sql = "SELECT * FROM motorista WHERE codigo_motorista = ? ORDER BY codigo_motorista;";
         String sql2 = "SELECT * FROM motorista WHERE nome = ? ORDER BY nome;";
         String sql3 = "SELECT * FROM motorista WHERE cpf = ? ORDER BY cpf;";
@@ -113,7 +112,7 @@ public class PMotorista extends TPersistencia<Motorista>{
         ArrayList<Motorista> lista = new ArrayList<>();
         
         while(rs.next()){
-            lista.add(new Motorista(rs.getInt(1), rs.getString(2), rs.getLong(3)));
+            lista.add(new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3)));
         }
         
         return lista.iterator();
@@ -128,10 +127,12 @@ public class PMotorista extends TPersistencia<Motorista>{
         prd.setString(2, motorista.getCpf()+"");
         
         
-        if(motorista.getCodigo_motorista()> 0)
-            prd.setInt(6, motorista.getCodigo_motorista());
+        if(motorista.getCodigoMotorista()> 0)
+            prd.setInt(6, motorista.getCodigoMotorista());
         
         return prd;
     }
+
+    
     
 }

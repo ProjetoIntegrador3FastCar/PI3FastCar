@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
-import util.CategoriaAbstrata;
+import util.fabricaabstrata.CategoriaAbstrata;
 
 /**
  *
@@ -89,12 +89,12 @@ public class PVeiculo extends TPersistencia<Veiculo>{
     }
 
     @Override
-    public Iterator<Veiculo> listarDescricao(int opcao, String string) throws SQLException {
+    public Iterator<Veiculo> listarPorFiltro(int opcao, String string) throws SQLException {
         String sql = "SELECT * FROM veiculo WHERE codigo_veiculo = ? ORDER BY codigo_veiculo;";
-        String sql2 = "SELECT * FROM veiculo WHERE modelo = ? ORDER BY modelo;";
+        String sql2 = "SELECT * FROM veiculo WHERE modelo LIKE ? ORDER BY modelo;";
         String sql3 = "SELECT * FROM veiculo v INNER JOIN categoria_veiculo cv "
                 + "ON v.cod_categoria = cv.codigo_categoria "
-                + "WHERE descricao = ? ORDER BY codigo_viagem;";
+                + "WHERE descricao LIKE ? ORDER BY descricao;";
         
         Connection cnn = util.SConexao.getConexao();
         PreparedStatement prd;
@@ -109,7 +109,7 @@ public class PVeiculo extends TPersistencia<Veiculo>{
                 break;
             default:
                 prd = cnn.prepareStatement(sql3);
-                prd.setInt(1, Integer.parseInt(string));
+                prd.setString(1, "%" + string + "%");
                 break;
         }
         

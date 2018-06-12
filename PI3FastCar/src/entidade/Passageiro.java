@@ -76,7 +76,7 @@ public class Passageiro implements Codigo, Comparable<Passageiro>, Observador, M
     @Override
     public void mostrar() {
         System.out.println("-------- Dados para avaliação --------");
-        System.out.printf("Motorista: %s", dados.getMotorista().getNome());
+        System.out.printf("Motorista: %s\n", dados.getMotorista().getNome());
     }
     
 }

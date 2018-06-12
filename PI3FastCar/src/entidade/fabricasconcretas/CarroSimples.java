@@ -9,6 +9,7 @@ package entidade.fabricasconcretas;
 import entidade.Veiculo;
 import java.util.Iterator;
 import persistencia.PCategoria;
+import persistencia.PVeiculo;
 import util.fabricaabstrata.CategoriaAbstrata;
 
 /**
