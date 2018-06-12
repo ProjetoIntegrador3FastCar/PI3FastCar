@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package util;
+package util.fabricaabstrata;
+
 
 import entidade.Veiculo;
+import entidade.fabricasconcretas.SCategoria;
 import java.sql.SQLException;
 import java.util.Iterator;
+import persistencia.PCategoria;
 
 /**
  *

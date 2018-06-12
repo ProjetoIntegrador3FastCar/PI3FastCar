@@ -12,23 +12,21 @@ package entidade;
 public class Motorista {
     private int codigoMotorista;
     private String nome;
-    private long cpf;
+    private String cpf;
 
-    public Motorista(int codigo_motorista, String nome, long cpf) {
-        this.codigoMotorista = codigo_motorista;
+    public Motorista(int codigoMotorista, String nome, String cpf) {
+        this.codigoMotorista = codigoMotorista;
         this.nome = nome;
         this.cpf = cpf;
     }
 
-    public Motorista() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Motorista() {}
 
-    public int getCodigo_motorista() {
+    public int getCodigoMotorista() {
         return codigoMotorista;
     }
 
-    public void setCodigo_motorista(int codigoMotorista) {
+    public void setCodigoMotorista(int codigoMotorista) {
         this.codigoMotorista = codigoMotorista;
     }
 
@@ -40,18 +38,15 @@ public class Motorista {
         this.nome = nome;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
     /**
      * @param cpf the cpf to set
      */
-    public void setCpf(long cpf)throws Exception {
-        if(cpf <= 0 )throw new Exception("O CPF não pode ser <= 0");
+    public void setCpf(String cpf)throws Exception {
+        if(cpf.length() <= 0)throw new Exception("CPF inválido.");
         this.cpf = cpf;
     }
-
-        
-    
 }

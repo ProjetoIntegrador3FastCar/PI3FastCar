@@ -5,26 +5,31 @@
  */
 package persistencia;
 
-import util.Codigo;
+import util.interfaces.Codigo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Classe Template para persistências das classes: 
  * 
  * <ul>
- *  <li>Inscricao</li>
- *  <li>Jogador</li>
- *  <li>Torneio</li>
+ *  <li>Avaliacao</li>
+ *  <li>Motorista</li>
+ *  <li>Passageiro</li>
+ *  <li>Veiculo</li>
+ *  <li>Viagem</li>
+ *  <li>Categoria</li>
  * </ul>
  * 
+ * Para classe Categoria será, a priori, apenas para listagem e consulta das
+ * categorias existentes.
+ * 
  * @author Rodrigo Leite
- * @param <T> 
+ * @param <T> Classe a ser persistida
  */
 public abstract class TPersistencia<T>{
     
@@ -32,7 +37,7 @@ public abstract class TPersistencia<T>{
     public abstract void excluir(int cod) throws SQLException;
     public abstract T consultar(int cod) throws SQLException;
     public abstract Iterator<T> listar() throws SQLException;
-    public abstract Iterator<T> listarDescricao(int opcao, String string) throws SQLException;
+    public abstract Iterator<T> listarPorFiltro(int opcao, String filtro) throws SQLException;
     public abstract PreparedStatement prepararDeclaracao(T obj, Connection cnn, String sql) throws SQLException;
     
     public void alterarOuIncluir(T obj, String... sql) throws SQLException{
