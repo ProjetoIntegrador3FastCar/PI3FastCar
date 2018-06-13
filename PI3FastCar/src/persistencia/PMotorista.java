@@ -62,7 +62,8 @@ public class PMotorista extends TPersistencia<Motorista>{
         
         ResultSet rs = prd.executeQuery();
         if(rs.next()){
-            return new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3));
+            return new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3), 
+            new PVeiculo().consultar(rs.getInt(4)), rs.getBoolean(5), rs.getBoolean(6));
         }
         
         return null;
@@ -79,7 +80,8 @@ public class PMotorista extends TPersistencia<Motorista>{
         ArrayList<Motorista> lista = new ArrayList<>();
         
         while(rs.next()){
-            lista.add(new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            lista.add(new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3), 
+            new PVeiculo().consultar(rs.getInt(4)), rs.getBoolean(5), rs.getBoolean(6)));
         }
         
         return lista.iterator();
@@ -88,8 +90,8 @@ public class PMotorista extends TPersistencia<Motorista>{
     @Override
     public Iterator<Motorista> listarPorFiltro(int opcao, String string) throws SQLException {
         String sql = "SELECT * FROM motorista WHERE codigo_motorista = ? ORDER BY codigo_motorista;";
-        String sql2 = "SELECT * FROM motorista WHERE nome = ? ORDER BY nome;";
-        String sql3 = "SELECT * FROM motorista WHERE cpf = ? ORDER BY cpf;";
+        String sql2 = "SELECT * FROM motorista WHERE UPPER(nome) LIKE ? ORDER BY codigo_motorista;";
+        String sql3 = "SELECT * FROM motorista WHERE cpf = ? ORDER BY codigo_motorista;";
         
         Connection cnn = util.SConexao.getConexao();
         PreparedStatement prd;
@@ -112,7 +114,8 @@ public class PMotorista extends TPersistencia<Motorista>{
         ArrayList<Motorista> lista = new ArrayList<>();
         
         while(rs.next()){
-            lista.add(new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            lista.add(new Motorista(rs.getInt(1), rs.getString(2), rs.getString(3), 
+            new PVeiculo().consultar(rs.getInt(4)), rs.getBoolean(5), rs.getBoolean(6)));
         }
         
         return lista.iterator();

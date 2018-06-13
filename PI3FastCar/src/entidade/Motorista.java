@@ -5,28 +5,39 @@
  */
 package entidade;
 
+import util.interfaces.Codigo;
+
 /**
  *
  * @author Kleiton
  */
-public class Motorista {
+public class Motorista implements Codigo{
+    
+    private Veiculo veiculo;
     private int codigoMotorista;
     private String nome;
     private String cpf;
+    private boolean statusMotorista;
+    private boolean statusDeCorrida;
 
-    public Motorista(int codigoMotorista, String nome, String cpf) {
+    public Motorista(int codigoMotorista, String nome, String cpf, 
+             Veiculo veiculo, boolean statusMotorista, boolean statusDeCorrida) {
         this.codigoMotorista = codigoMotorista;
         this.nome = nome;
         this.cpf = cpf;
+        this.statusMotorista = statusMotorista;
+        this.statusDeCorrida = statusDeCorrida;
+        this.veiculo = veiculo;
     }
-
+    
     public Motorista() {}
 
     public int getCodigoMotorista() {
         return codigoMotorista;
     }
-
-    public void setCodigoMotorista(int codigoMotorista) {
+    
+    @Override
+    public void setCodigoTipo(int codigoMotorista) {
         this.codigoMotorista = codigoMotorista;
     }
 
@@ -49,4 +60,29 @@ public class Motorista {
         if(cpf.length() <= 0)throw new Exception("CPF inválido.");
         this.cpf = cpf;
     }
+
+    public boolean isStatusMotorista() {
+        return statusMotorista;
+    }
+
+    public void setStatusMotorista(boolean statusMotorista) {
+        this.statusMotorista = statusMotorista;
+    }
+
+    public boolean isStatusDeCorrida() {
+        return statusDeCorrida;
+    }
+
+    public void setStatusDeCorrida(boolean statusDeCorrida) {
+        this.statusDeCorrida = statusDeCorrida;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+    
 }

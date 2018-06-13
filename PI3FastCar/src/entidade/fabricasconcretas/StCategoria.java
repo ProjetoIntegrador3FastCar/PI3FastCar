@@ -11,7 +11,7 @@ import util.fabricaabstrata.CategoriaAbstrata;
  *
  * @author rodri
  */
-public enum SCategoria {
+public enum StCategoria {
     
     CARRO_SIMPLES{
         @Override

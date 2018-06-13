@@ -18,7 +18,7 @@ public class CarroLuxo extends CategoriaAbstrata{
 
     public CarroLuxo() {
         codCategoria = 2;
-        descricao = "Carro Luxo";
+        descricao = "Luxo";
     }
 
     @Override

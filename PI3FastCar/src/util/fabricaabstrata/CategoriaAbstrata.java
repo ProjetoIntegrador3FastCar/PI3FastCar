@@ -7,7 +7,7 @@ package util.fabricaabstrata;
 
 
 import entidade.Veiculo;
-import entidade.fabricasconcretas.SCategoria;
+import entidade.fabricasconcretas.StCategoria;
 import java.sql.SQLException;
 import java.util.Iterator;
 import persistencia.PCategoria;
@@ -29,6 +29,6 @@ public abstract class CategoriaAbstrata {
     public String getDescricao(){ return descricao; }
     public abstract Iterator<Veiculo> getListaDeVeiculos();
     public static CategoriaAbstrata getInstance(int codCat){
-        return SCategoria.values()[codCat].getInstance();
+        return StCategoria.values()[codCat].getInstance();
     }
 }

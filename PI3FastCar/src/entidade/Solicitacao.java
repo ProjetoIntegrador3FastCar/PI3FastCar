@@ -5,22 +5,35 @@
  */
 package entidade;
 
+import util.interfaces.Codigo;
+
 /**
  *
  * @author rodri
  */
-public class Solicitacao {
+public class Solicitacao implements Codigo{
     
+    private int codigoSolicitacao;
     private Viagem viagem;
     private Passageiro passageiro;
     private String formaDePagamento;
 
     public Solicitacao() {}
 
-    public Solicitacao(Viagem viagem, Passageiro passageiro, String formaDePagamento) {
+    public Solicitacao(int codigoSolicitacao, Viagem viagem, Passageiro passageiro, String formaDePagamento) {
+        this.codigoSolicitacao = codigoSolicitacao;
         this.viagem = viagem;
         this.passageiro = passageiro;
         this.formaDePagamento = formaDePagamento;
+    }
+
+    public int getCodigoSolicitacao() {
+        return codigoSolicitacao;
+    }
+    
+    @Override
+    public void setCodigoTipo(int codigoSolicitacao) {
+        this.codigoSolicitacao = codigoSolicitacao;
     }
 
     public Viagem getViagem() {

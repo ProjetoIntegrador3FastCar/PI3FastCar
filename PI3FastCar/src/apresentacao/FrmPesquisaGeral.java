@@ -11,8 +11,10 @@ package apresentacao;
 
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,8 +22,8 @@ import javax.swing.table.DefaultTableModel;
  * @author aluno
  */
 public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
-    boolean condTela;
-    int codEnt;
+    
+    private int opcao;
     private JDesktopPane principal;
     /**
      * Creates new form frmTipoAssociadoPesquisa
@@ -30,16 +32,15 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-    public FrmPesquisaGeral(JDesktopPane principal, boolean condTela, int codEnt){
+    public FrmPesquisaGeral(JDesktopPane principal, int opcao){
         this();
+        this.opcao = opcao;
+        if(opcao == 3) btnAtivar.setEnabled(false);
+        else btnAtivar.setEnabled(true);
         this.principal = principal;
-        this.condTela = condTela;
-        if(condTela == false) {
-            cmbCategoria.setSelectedIndex(0);
-            cmbCategoria.setEnabled(false);
-        }
-        this.codEnt = codEnt;
+        preencherFrame(this.opcao);
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,10 +55,12 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
         btnFechar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblResultado = new javax.swing.JTable();
-        cmbCategoria = new javax.swing.JComboBox<>();
+        cmbFiltro = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnAtivar = new javax.swing.JToggleButton();
+        txtPesquisa = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,8 +74,6 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        setTitle("Pesquisa Funcionário");
 
         btnFechar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnFechar.setText("Fechar");
@@ -100,22 +101,27 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblResultado);
 
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Almoxarifado", "Sistema" }));
-        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+        cmbFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCategoriaActionPerformed(evt);
+                cmbFiltroActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Mostrar usuário do:");
+        jLabel1.setText("Filtrar por:");
 
         jLabel2.setText("Ativar mouse:");
 
         btnAtivar.setText("Mouse Desativado");
-        btnAtivar.setEnabled(false);
         btnAtivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtivarActionPerformed(evt);
+            }
+        });
+
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
             }
         });
 
@@ -129,28 +135,35 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                 .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnAtivar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                    .addComponent(cmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtivar)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnFechar)
@@ -161,12 +174,18 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        
+        if(this.opcao == 3) this.dispose();
+        else{
+            FrmCadastroMotorista janelaM = new FrmCadastroMotorista(principal);
+            this.principal.add(janelaM);
+            janelaM.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnFecharActionPerformed
 
-    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
+    private void cmbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFiltroActionPerformed
         
-    }//GEN-LAST:event_cmbCategoriaActionPerformed
+    }//GEN-LAST:event_cmbFiltroActionPerformed
 
     private void tblResultadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultadoMousePressed
         
@@ -176,77 +195,35 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnAtivarActionPerformed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        preencherPorFiltro(cmbFiltro.getSelectedIndex(), txtPesquisa.getText().toUpperCase());
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAtivar;
     private javax.swing.JButton btnFechar;
-    private javax.swing.JComboBox<String> cmbCategoria;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JComboBox<String> cmbFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tblResultado;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
-
-    private void preencherTelaAlmox() {
+    
+    private void preencherPorFiltro(int opcaoCmb, String filtro){
         try {
-            
-            Vector<String> cabecalho = new Vector<>();
-            cabecalho.add("Código");
-            cabecalho.add("Nome");
-            cabecalho.add("Matrícula");
-            
-            Vector detalhe = new Vector<>();
-            for (Funcionario funcionario : new FuncionarioDAO().listar()) {
-                Vector<String> linha = new Vector<>();
-                linha.add(funcionario.getId()+ "");
-                linha.add(funcionario.getNome());
-                linha.add(funcionario.getMatricula());
-                
-                detalhe.add(linha);
-            }
-            
-            
-            
-            tblResultado.setModel(new DefaultTableModel(detalhe, cabecalho));
-            
+            StFramePesquisa.values()[this.opcao].preencherPorFiltro(tblResultado, opcaoCmb, filtro);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    private void preencherTelaSist() {
-        try {
-            
-            
-            Vector<String> cabecalho = new Vector<>();
-            cabecalho.add("Código do Usuário");
-            cabecalho.add("Nome");
-            cabecalho.add("Matrícula");
-            cabecalho.add("E-mail");
-            cabecalho.add("Senha");
-            cabecalho.add("Código do Funcionário");
-            cabecalho.add("CPF");
-            
-            Vector detalhe = new Vector<>();
-            for (Usuario usuarioSis : new UsuarioSistemaDAO().listar()) {
-                Vector<String> linha = new Vector<>();
-                linha.add(usuarioSis.getIdUsuario() + "");
-                linha.add(usuarioSis.getFuncionario().getNome());
-                linha.add(usuarioSis.getFuncionario().getMatricula());
-                linha.add(usuarioSis.getEmail());
-                linha.add(usuarioSis.getSenha());
-                linha.add(usuarioSis.getFuncionario().getId() + "");
-                linha.add(usuarioSis.getCpf());
-                detalhe.add(linha);
-            }
-            
-            tblResultado.setModel(new DefaultTableModel(detalhe, cabecalho));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    private void preencherFrame(int opcao) {
+        StFramePesquisa.values()[opcao].preencherTabela(tblResultado);
+        StFramePesquisa.values()[opcao].preencherCombo(cmbFiltro);
     }
-    
-
 }

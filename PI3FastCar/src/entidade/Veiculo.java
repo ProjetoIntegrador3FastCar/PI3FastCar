@@ -6,31 +6,36 @@
 package entidade;
 
 import util.fabricaabstrata.CategoriaAbstrata;
+import util.interfaces.Codigo;
 
 /**
  *
  * @author Kleiton
  */
-public class Veiculo {
+public class Veiculo implements Codigo{
     private int codigoVeiculo;
-    private CategoriaAbstrata categoria;
     private String placa;
     private String cor;
     private String modelo;
+    private CategoriaAbstrata categoria;
 
-    public Veiculo(int codigoVeiculo, CategoriaAbstrata categoria, String placa, String cor, String modelo) {
+    public Veiculo() {}
+    
+    public Veiculo(int codigoVeiculo, String placa, String cor, String modelo,
+            CategoriaAbstrata categoria) {
         this.codigoVeiculo = codigoVeiculo;
-        this.categoria = categoria;
         this.placa = placa;
         this.cor = cor;
         this.modelo = modelo;
+        this.categoria = categoria;
     }
 
     public int getCodigoVeiculo() {
         return codigoVeiculo;
     }
-
-    public void setCodigoVeiculo(int codigoVeiculo) {
+    
+    @Override
+    public void setCodigoTipo(int codigoVeiculo) {
         this.codigoVeiculo = codigoVeiculo;
     }
 

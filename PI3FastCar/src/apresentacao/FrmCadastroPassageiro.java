@@ -5,16 +5,13 @@
  */
 package apresentacao;
 
-import entidade.Funcionario;
-import entidade.Usuario;
+
+//import entidade.Usuario;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
-import negocio.FuncionarioBR;
-import negocio.UsuarioSisBR;
-import persistencia.UsuarioSistemaDAO;
 import util.Validation;
 
 /**
@@ -24,25 +21,14 @@ import util.Validation;
 public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
     private JDesktopPane principal;
     
-    private void condicao(boolean cond){
-        txtCpf.setEnabled(cond);
-        txtEmail.setEnabled(cond);
-        txtSenha.setEnabled(cond);
-    }
-    
     private void limpar(){
         txtCodigoFunc.setText("");
-        txtCodUsuario.setText("");
-        txtMatricula.setText("");
         txtNome.setText("");
-        txtCpf.setText("");
+        txtNumeroCelular.setText("");
         txtEmail.setText("");
         txtSenha.setText("");
-        cmbCategoria.setSelectedIndex(0);
-        cmbCategoria.setEnabled(true);
-        lblAvisoMatricula.setText("");
         lblAvisoNome.setText("");
-        lblAvisoCpf.setText("");
+        lblAvisoNumero.setText("");
         lblAvisoEmail.setText("");
         lblAvisoSenha.setText("");
     }
@@ -52,28 +38,12 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
      */
     public FrmCadastroPassageiro() {
         initComponents();
+        limpar();
     }
     
     public FrmCadastroPassageiro(JDesktopPane principal){
         this();
         this.principal = principal;
-    }
-    
-    public FrmCadastroPassageiro(JDesktopPane principal, Funcionario func){
-        this();
-        this.principal = principal;
-        cmbCategoria.setSelectedIndex(1);
-        cmbCategoria.setEnabled(false);
-        condicao(false);
-        preencherTelaAlmox(func);
-    }
-    
-    public FrmCadastroPassageiro(JDesktopPane principal, Usuario usuario){
-        this();
-        this.principal = principal;
-        cmbCategoria.setSelectedIndex(0);
-        cmbCategoria.setEnabled(false);
-        preencherTelaSis(usuario);
     }
 
     /**
@@ -90,28 +60,21 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtCodigoFunc = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
-        txtMatricula = new javax.swing.JTextField();
-        txtCpf = new javax.swing.JTextField();
+        txtNumeroCelular = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        cmbCategoria = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         txtSenha = new javax.swing.JPasswordField();
-        jLabel8 = new javax.swing.JLabel();
-        txtCodUsuario = new javax.swing.JTextField();
-        lblAvisoMatricula = new javax.swing.JLabel();
         lblAvisoNome = new javax.swing.JLabel();
-        lblAvisoCpf = new javax.swing.JLabel();
+        lblAvisoNumero = new javax.swing.JLabel();
         lblAvisoEmail = new javax.swing.JLabel();
         lblAvisoSenha = new javax.swing.JLabel();
 
@@ -121,15 +84,13 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
 
         jLabel9.setText("jLabel9");
 
-        setTitle("Cadastro de Funcionário");
+        setTitle("Cadastro de Passageiro");
 
-        jLabel1.setText("Código funcionário:");
+        jLabel1.setText("Código Passageiro:");
 
         jLabel2.setText("Nome:");
 
-        jLabel3.setText("Matrícula:");
-
-        jLabel4.setText("CPF:");
+        jLabel4.setText("Número Celular");
 
         jLabel5.setText("E-mail:");
 
@@ -143,20 +104,9 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
             }
         });
 
-        txtMatricula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatriculaActionPerformed(evt);
-            }
-        });
-        txtMatricula.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNumeroCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtMatriculaKeyTyped(evt);
-            }
-        });
-
-        txtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCpfKeyTyped(evt);
+                txtNumeroCelularKeyTyped(evt);
             }
         });
 
@@ -165,15 +115,6 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
                 txtEmailKeyTyped(evt);
             }
         });
-
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário Sistema", "Usuário Almoxarifado" }));
-        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCategoriaActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Categoria:");
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -217,18 +158,11 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel8.setText("Código usuário sistema");
-
-        txtCodUsuario.setEditable(false);
-
-        lblAvisoMatricula.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblAvisoMatricula.setText("Aviso matrícula");
-
         lblAvisoNome.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblAvisoNome.setText("Aviso Nome");
 
-        lblAvisoCpf.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblAvisoCpf.setText("Aviso CPF");
+        lblAvisoNumero.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoNumero.setText("Aviso Número");
 
         lblAvisoEmail.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblAvisoEmail.setText("Aviso E-mail");
@@ -241,101 +175,84 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(182, 182, 182)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCodigoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCodUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnPesquisar))))
+                        .addComponent(txtCodigoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(332, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCadastrar)
-                        .addGap(47, 47, 47)
-                        .addComponent(btnExcluir)
-                        .addGap(53, 53, 53)
-                        .addComponent(btnLimpar)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnFechar)
-                        .addGap(8, 8, 8)))
-                .addGap(63, 63, 63))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAvisoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPesquisar)
+                        .addGap(39, 39, 39))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(btnCadastrar))
+                .addGap(47, 47, 47)
+                .addComponent(btnExcluir)
+                .addGap(53, 53, 53)
+                .addComponent(btnLimpar)
+                .addGap(49, 49, 49)
+                .addComponent(btnFechar)
+                .addGap(71, 71, 71))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvisoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(lblAvisoSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblAvisoEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                        .addComponent(lblAvisoCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblAvisoNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblAvisoNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7)
-                    .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(jLabel1))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtCodUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAvisoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(btnPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAvisoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(txtNumeroCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAvisoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAvisoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(lblAvisoEmail)
-                .addGap(13, 13, 13)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAvisoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblAvisoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpar)
                     .addComponent(btnFechar)
@@ -347,84 +264,68 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
-        if(cmbCategoria.getSelectedIndex() == 1) condicao(false);
-        else condicao(true);
-    }//GEN-LAST:event_cmbCategoriaActionPerformed
-
-    private void txtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatriculaActionPerformed
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        try {
-            ArrayList<String> textos = new ArrayList<>();
-            
-            switch(cmbCategoria.getSelectedIndex()){
-                case 0: 
-                    textos.removeAll(textos);
-                    textos.add(txtMatricula.getText());
-                    textos.add(txtNome.getText().trim());
-                    textos.add(txtCpf.getText());
-                    textos.add(txtEmail.getText());
-                    textos.add(String.valueOf(txtSenha.getPassword()));
-                    
-                    Validation.isEmpty(textos);
-                    Validation.invalidCaracAndLetters(txtMatricula.getText());
-                    Validation.invalidCaracAndLetters(txtCpf.getText());
-                    Validation.limitMinCaracter(11, txtCpf.getText());
-                    Validation.invalidCaracAndNumbers(txtNome.getText());
-                    Validation.invalidSpaces(txtEmail.getText());
-                    
-                    Funcionario funcionario1 = new Funcionario();
-                    Usuario usuarioSis = new Usuario();
-
-                    funcionario1.setMatricula(txtMatricula.getText());
-                    funcionario1.setNome(txtNome.getText());
-
-                    usuarioSis.setFuncionario(funcionario1);
-                    usuarioSis.setCpf(txtCpf.getText());
-                    usuarioSis.setEmail(txtEmail.getText());
-                    usuarioSis.setSenha(String.valueOf(txtSenha.getPassword()));
-
-                    if(txtCodigoFunc.getText() != null && !txtCodigoFunc.getText().isEmpty()){
-                        funcionario1.setId(Integer.parseInt(txtCodigoFunc.getText()));
-                    }
-                    
-                    if(txtCodUsuario.getText() != null && !txtCodUsuario.getText().isEmpty())
-                        usuarioSis.setIdUsuario(Integer.parseInt(txtCodUsuario.getText()));
-
-
-                    new FuncionarioBR().salvar(funcionario1);
-                    new UsuarioSisBR().salvar(usuarioSis);
-                    
-                    break;
-                case 1: 
-                    textos.removeAll(textos);
-                    textos.add(txtMatricula.getText());
-                    textos.add(txtNome.getText());
-                    
-                    Validation.isEmpty(textos);
-                    Validation.invalidCaracAndLetters(txtMatricula.getText());
-                    Validation.invalidCaracAndNumbers(txtNome.getText());
-                    
-                    Funcionario funcionario2 = new Funcionario();
-                    
-                    funcionario2.setNome(txtNome.getText());
-                    funcionario2.setMatricula(txtMatricula.getText());
-                    
-                    if(txtCodigoFunc.getText() != null && !txtCodigoFunc.getText().isEmpty())
-                        funcionario2.setId(Integer.parseInt(txtCodigoFunc.getText()));
-                    
-                    new FuncionarioBR().salvar(funcionario2);
-
-                    break;
-            }
-            limpar();
-            JOptionPane.showMessageDialog(rootPane, "Funcionário cadastrado com sucesso!");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-        }
+//        try {
+//            ArrayList<String> textos = new ArrayList<>();
+//            
+//                    textos.removeAll(textos);
+//                    textos.add(txtNome.getText().trim());
+//                    textos.add(txtCpf.getText());
+//                    textos.add(txtEmail.getText());
+//                    textos.add(String.valueOf(txtSenha.getPassword()));
+//                    
+//                    Validation.isEmpty(textos);
+//                    Validation.invalidCaracAndLetters(txtMatricula.getText());
+//                    Validation.invalidCaracAndLetters(txtCpf.getText());
+//                    Validation.limitMinCaracter(11, txtCpf.getText());
+//                    Validation.invalidCaracAndNumbers(txtNome.getText());
+//                    Validation.invalidSpaces(txtEmail.getText());
+//                    
+//                    Funcionario funcionario1 = new Funcionario();
+//                    Usuario usuarioSis = new Usuario();
+//
+//                    funcionario1.setMatricula(txtMatricula.getText());
+//                    funcionario1.setNome(txtNome.getText());
+//
+//                    usuarioSis.setFuncionario(funcionario1);
+//                    usuarioSis.setCpf(txtCpf.getText());
+//                    usuarioSis.setEmail(txtEmail.getText());
+//                    usuarioSis.setSenha(String.valueOf(txtSenha.getPassword()));
+//
+//                    if(txtCodigoFunc.getText() != null && !txtCodigoFunc.getText().isEmpty()){
+//                        funcionario1.setId(Integer.parseInt(txtCodigoFunc.getText()));
+//                    }
+//                    
+//                    if(txtCodUsuario.getText() != null && !txtCodUsuario.getText().isEmpty())
+//                        usuarioSis.setIdUsuario(Integer.parseInt(txtCodUsuario.getText()));
+//
+//
+//                    new FuncionarioBR().salvar(funcionario1);
+//                    new UsuarioSisBR().salvar(usuarioSis);
+//                    
+//                    textos.removeAll(textos);
+//                    textos.add(txtMatricula.getText());
+//                    textos.add(txtNome.getText());
+//                    
+//                    Validation.isEmpty(textos);
+//                    Validation.invalidCaracAndLetters(txtMatricula.getText());
+//                    Validation.invalidCaracAndNumbers(txtNome.getText());
+//                    
+//                    Funcionario funcionario2 = new Funcionario();
+//                    
+//                    funcionario2.setNome(txtNome.getText());
+//                    funcionario2.setMatricula(txtMatricula.getText());
+//                    
+//                    if(txtCodigoFunc.getText() != null && !txtCodigoFunc.getText().isEmpty())
+//                        funcionario2.setId(Integer.parseInt(txtCodigoFunc.getText()));
+//                    
+//                    new FuncionarioBR().salvar(funcionario2);
+//
+//            limpar();
+//            JOptionPane.showMessageDialog(rootPane, "Funcionário cadastrado com sucesso!");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+//        }
 
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -439,7 +340,7 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         try {
-            frmFuncionarioPesquisa janela = new frmFuncionarioPesquisa(principal, true, 0);
+            FrmPesquisaGeral janela = new FrmPesquisaGeral(principal, 1);
             principal.add(janela);
             janela.setVisible(true);
             this.dispose();
@@ -447,14 +348,6 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
-
-    private void txtMatriculaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaKeyTyped
-        try {
-            Validation.limitMaxCaracter(6, txtMatricula.getText(), evt);
-        } catch (Exception e) {
-            lblAvisoMatricula.setText(e.getMessage());
-        }
-    }//GEN-LAST:event_txtMatriculaKeyTyped
 
     private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
         try {
@@ -464,13 +357,13 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtNomeKeyPressed
 
-    private void txtCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfKeyTyped
+    private void txtNumeroCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroCelularKeyTyped
         try {
-            Validation.limitMaxCaracter(11, txtCpf.getText(), evt);
+            Validation.limitMaxCaracter(11, txtNumeroCelular.getText(), evt);
         } catch (Exception e) {
-            lblAvisoCpf.setText(e.getMessage());
+            lblAvisoNumero.setText(e.getMessage());
         }
-    }//GEN-LAST:event_txtCpfKeyTyped
+    }//GEN-LAST:event_txtNumeroCelularKeyTyped
 
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
         try {
@@ -489,24 +382,24 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtSenhaKeyTyped
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        try {
-            int resposta = JOptionPane.showConfirmDialog(null, 
-                    "Confirma a exclusão do \"Funcionário\" ?",
-                    "Gestão Almoxarifado", JOptionPane.YES_NO_OPTION);
-            
-            if(resposta == JOptionPane.YES_OPTION){
-                if(cmbCategoria.getSelectedIndex() == 0)
-                    new UsuarioSisBR().deletar(Integer.parseInt(txtCodigoFunc.getText()));
-                else
-                    new FuncionarioBR().deletar(Integer.parseInt(txtCodigoFunc.getText()));
-                
-                JOptionPane.showMessageDialog(rootPane, 
-                        "Operação efetuada com sucesso!");
-                limpar();
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-        }
+//        try {
+//            int resposta = JOptionPane.showConfirmDialog(null, 
+//                    "Confirma a exclusão do \"Funcionário\" ?",
+//                    "Gestão Almoxarifado", JOptionPane.YES_NO_OPTION);
+//            
+//            if(resposta == JOptionPane.YES_OPTION){
+//                if(cmbCategoria.getSelectedIndex() == 0)
+//                    new UsuarioSisBR().deletar(Integer.parseInt(txtCodigoFunc.getText()));
+//                else
+//                    new FuncionarioBR().deletar(Integer.parseInt(txtCodigoFunc.getText()));
+//                
+//                JOptionPane.showMessageDialog(rootPane, 
+//                        "Operação efetuada com sucesso!");
+//                limpar();
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+//        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 
@@ -516,59 +409,52 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JComboBox<String> cmbCategoria;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JLabel lblAvisoCpf;
     private javax.swing.JLabel lblAvisoEmail;
-    private javax.swing.JLabel lblAvisoMatricula;
     private javax.swing.JLabel lblAvisoNome;
+    private javax.swing.JLabel lblAvisoNumero;
     private javax.swing.JLabel lblAvisoSenha;
-    private javax.swing.JTextField txtCodUsuario;
     private javax.swing.JTextField txtCodigoFunc;
-    private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNumeroCelular;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 
-    private void preencherTelaAlmox(Funcionario func) {
-        try {
-            txtCodigoFunc.setText(func.getId()+"");
-            txtMatricula.setText(func.getMatricula());
-            txtNome.setText(func.getNome());
-            
-            btnExcluir.setEnabled(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-        }
-    }
-
-    private void preencherTelaSis(Usuario usuario) {
-        try {
-            txtCodigoFunc.setText(usuario.getFuncionario().getId()+"");
-            txtCodUsuario.setText(usuario.getIdUsuario()+"");
-            txtMatricula.setText(usuario.getFuncionario().getMatricula());
-            txtNome.setText(usuario.getFuncionario().getNome());
-            txtCpf.setText(usuario.getCpf()+"");
-            txtEmail.setText(usuario.getEmail());
-            txtSenha.setText(usuario.getSenha());
-            
-            btnExcluir.setEnabled(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-        }
-    }
+//    private void preencherTelaAlmox(Funcionario func) {
+//        try {
+//            txtCodigoFunc.setText(func.getId()+"");
+//            txtMatricula.setText(func.getMatricula());
+//            txtNome.setText(func.getNome());
+//            
+//            btnExcluir.setEnabled(true);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+//        }
+//    }
+//
+//    private void preencherTelaSis(Usuario usuario) {
+//        try {
+//            txtCodigoFunc.setText(usuario.getFuncionario().getId()+"");
+//            txtCodUsuario.setText(usuario.getIdUsuario()+"");
+//            txtMatricula.setText(usuario.getFuncionario().getMatricula());
+//            txtNome.setText(usuario.getFuncionario().getNome());
+//            txtCpf.setText(usuario.getCpf()+"");
+//            txtEmail.setText(usuario.getEmail());
+//            txtSenha.setText(usuario.getSenha());
+//            
+//            btnExcluir.setEnabled(true);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+//        }
+//    }
 
     
 }

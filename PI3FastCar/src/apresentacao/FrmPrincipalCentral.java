@@ -8,7 +8,7 @@ package apresentacao;
 
 
 
-import entidade.Usuario;
+//import entidade.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,17 +19,17 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
     /**
      * Creates new form frmPrincipalCampeonato
      */
-    static Usuario usuarioSis;
+//    static Usuario usuarioSis;
     
     public FrmPrincipalCentral() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
     
-    public FrmPrincipalCentral(Usuario usuarioSis){
-        this();
-        FrmPrincipalCentral.usuarioSis = usuarioSis;
-    }
+//    public FrmPrincipalCentral(Usuario usuarioSis){
+//        this();
+//        FrmPrincipalCentral.usuarioSis = usuarioSis;
+//    }
     
     private void sair(){
         try{
@@ -59,8 +59,8 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
         pnlPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        mnuCadastroUsuario = new javax.swing.JMenuItem();
-        mnuCadastroProduto = new javax.swing.JMenuItem();
+        mnuCadastroMotorista = new javax.swing.JMenuItem();
+        mnuCadastroPassageiro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuMovimentacao = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -85,27 +85,27 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastro");
 
-        mnuCadastroUsuario.setText("Cadastro de Usuário");
-        mnuCadastroUsuario.addActionListener(new java.awt.event.ActionListener() {
+        mnuCadastroMotorista.setText("Cadastro de Motorista");
+        mnuCadastroMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCadastroUsuarioActionPerformed(evt);
+                mnuCadastroMotoristaActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuCadastroUsuario);
+        jMenu1.add(mnuCadastroMotorista);
 
-        mnuCadastroProduto.setText("Cadastro de Produto");
-        mnuCadastroProduto.addActionListener(new java.awt.event.ActionListener() {
+        mnuCadastroPassageiro.setText("Cadastro de Passageiro");
+        mnuCadastroPassageiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCadastroProdutoActionPerformed(evt);
+                mnuCadastroPassageiroActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuCadastroProduto);
+        jMenu1.add(mnuCadastroPassageiro);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Movimentação");
+        jMenu2.setText("Viagens");
 
-        mnuMovimentacao.setText("Movimentação");
+        mnuMovimentacao.setText("Registro de Viagens");
         mnuMovimentacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuMovimentacaoActionPerformed(evt);
@@ -151,31 +151,32 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
         this.sair();
     }//GEN-LAST:event_mnuSairActionPerformed
 
-    private void mnuCadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroUsuarioActionPerformed
+    private void mnuCadastroMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroMotoristaActionPerformed
         try {
-            frmCadastroFuncionario frm = new frmCadastroFuncionario(this.pnlPrincipal);
+            FrmCadastroMotorista frm = new FrmCadastroMotorista(this.pnlPrincipal);
             this.pnlPrincipal.add(frm);
             frm.setVisible(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            e.printStackTrace();
+//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-    }//GEN-LAST:event_mnuCadastroUsuarioActionPerformed
+    }//GEN-LAST:event_mnuCadastroMotoristaActionPerformed
 
-    private void mnuCadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroProdutoActionPerformed
+    private void mnuCadastroPassageiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroPassageiroActionPerformed
         try {
-            frmCadastroProduto frm = new frmCadastroProduto(this.pnlPrincipal);
+            FrmCadastroPassageiro frm = new FrmCadastroPassageiro(this.pnlPrincipal);
             this.pnlPrincipal.add(frm);
             frm.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-    }//GEN-LAST:event_mnuCadastroProdutoActionPerformed
+    }//GEN-LAST:event_mnuCadastroPassageiroActionPerformed
 
     private void mnuMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMovimentacaoActionPerformed
         try {
-            frmMovimentacao frm = new frmMovimentacao(this.pnlPrincipal, usuarioSis);
-            this.pnlPrincipal.add(frm);
-            frm.setVisible(true);
+//            frmMovimentacao frm = new frmMovimentacao(this.pnlPrincipal, usuarioSis);
+//            this.pnlPrincipal.add(frm);
+//            frm.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
@@ -224,8 +225,8 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem mnuCadastroProduto;
-    private javax.swing.JMenuItem mnuCadastroUsuario;
+    private javax.swing.JMenuItem mnuCadastroMotorista;
+    private javax.swing.JMenuItem mnuCadastroPassageiro;
     private javax.swing.JMenuItem mnuMovimentacao;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JDesktopPane pnlPrincipal;

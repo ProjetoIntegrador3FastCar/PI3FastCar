@@ -63,8 +63,8 @@ public class PVeiculo extends TPersistencia<Veiculo>{
         
         ResultSet rs = prd.executeQuery();
         if(rs.next()){
-            return new Veiculo(rs.getInt(1), CategoriaAbstrata.getInstance(rs.getInt(2)), rs.getString(3), rs.getString(4), 
-                    rs.getString(5));
+            return new Veiculo(rs.getInt(1), rs.getString(2), rs.getString(3), 
+                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5)));
         }
         
         return null;
@@ -81,8 +81,8 @@ public class PVeiculo extends TPersistencia<Veiculo>{
         ArrayList<Veiculo> lista = new ArrayList<>();
         
         while(rs.next()){
-            lista.add(new Veiculo(rs.getInt(1), CategoriaAbstrata.getInstance(rs.getInt(2)), rs.getString(3), rs.getString(4), 
-                    rs.getString(5)));
+            lista.add(new Veiculo(rs.getInt(1), rs.getString(2), rs.getString(3), 
+                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5))));
         }
         
         return lista.iterator();
@@ -91,10 +91,10 @@ public class PVeiculo extends TPersistencia<Veiculo>{
     @Override
     public Iterator<Veiculo> listarPorFiltro(int opcao, String string) throws SQLException {
         String sql = "SELECT * FROM veiculo WHERE codigo_veiculo = ? ORDER BY codigo_veiculo;";
-        String sql2 = "SELECT * FROM veiculo WHERE modelo LIKE ? ORDER BY modelo;";
+        String sql2 = "SELECT * FROM veiculo WHERE UPPER(modelo) LIKE ? ORDER BY modelo;";
         String sql3 = "SELECT * FROM veiculo v INNER JOIN categoria_veiculo cv "
                 + "ON v.cod_categoria = cv.codigo_categoria "
-                + "WHERE descricao LIKE ? ORDER BY descricao;";
+                + "WHERE UPPER(cv.descricao) LIKE ? ORDER BY codigo_veiculo;";
         
         Connection cnn = util.SConexao.getConexao();
         PreparedStatement prd;
@@ -117,8 +117,8 @@ public class PVeiculo extends TPersistencia<Veiculo>{
         ArrayList<Veiculo> lista = new ArrayList<>();
         
         while(rs.next()){
-            lista.add(new Veiculo(rs.getInt(1), CategoriaAbstrata.getInstance(rs.getInt(2)), rs.getString(3), rs.getString(4), 
-                    rs.getString(5)));
+            lista.add(new Veiculo(rs.getInt(1), rs.getString(2), rs.getString(3), 
+                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5))));
         }
         
         return lista.iterator();

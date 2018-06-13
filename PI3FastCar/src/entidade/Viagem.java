@@ -14,26 +14,26 @@ import util.interfaces.Codigo;
  */
 public class Viagem implements Comparable<Viagem>, Codigo{
     
-    
-    
     private int codigoViagem;
     private String localOrigem;
     private String localDestino;
     private double valorViagem;
     private Date dataViagem;
     private Motorista motorista;
+    private int avaliacao;
 
     public Viagem() {
     }
 
     public Viagem(int codigoViagem, String localOrigem, String localDestino,
-            double valorViagem, Date dataViagem, Motorista motorista) {
+            double valorViagem, Date dataViagem, Motorista motorista, int avaliacao) {
         this.codigoViagem = codigoViagem;
         this.localOrigem = localOrigem;
         this.localDestino = localDestino;
         this.valorViagem = valorViagem;
         this.dataViagem = dataViagem;
         this.motorista = motorista;
+        this.avaliacao = avaliacao;
     }
 
 
@@ -84,6 +84,14 @@ public class Viagem implements Comparable<Viagem>, Codigo{
 
     public void setMotorista(Motorista motorista) {
         this.motorista = motorista;
+    }
+
+    public int getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(int avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
     @Override

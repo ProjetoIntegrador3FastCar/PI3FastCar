@@ -6,10 +6,9 @@
 package apresentacao;
 
 import com.sun.glass.events.KeyEvent;
-import entidade.Usuario;
+//import entidade.Usuario;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import negocio.UsuarioSisBR;
 import util.Validation;
 
 /**
@@ -19,7 +18,7 @@ import util.Validation;
 public class FrmLogin extends javax.swing.JFrame {
     
     private void limpar(){
-        txtCPF.setText("");
+        txtNome.setText("");
         txtSenha.setText("");
         lblAvisoCpf.setText("");
         lblAvisoSenha.setText("");
@@ -46,7 +45,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        txtCPF = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         lblAvisoCpf = new javax.swing.JLabel();
@@ -63,12 +62,12 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setText("Login");
 
-        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCPFKeyPressed(evt);
+                txtNomeKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCPFKeyTyped(evt);
+                txtNomeKeyTyped(evt);
             }
         });
 
@@ -89,7 +88,7 @@ public class FrmLogin extends javax.swing.JFrame {
         });
 
         lblAvisoCpf.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblAvisoCpf.setText("Aviso CPF");
+        lblAvisoCpf.setText("Aviso Nome");
         lblAvisoCpf.setPreferredSize(new java.awt.Dimension(41, 17));
 
         lblAvisoSenha.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -112,7 +111,7 @@ public class FrmLogin extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblAvisoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                             .addComponent(lblAvisoCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -130,7 +129,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAvisoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,56 +150,56 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         try {
-            Validation.limitMinCaracter(11, txtCPF.getText());
-            Usuario usuario = new UsuarioSisBR().consultar(txtCPF.getText(), 
-                    String.valueOf(txtSenha.getPassword()));
+//            Validation.limitMinCaracter(11, txtNome.getText());
+//            Usuario usuario = new UsuarioSisBR().consultar(txtNome.getText(), 
+//                    String.valueOf(txtSenha.getPassword()));
             
-                new frmPrincipalAlmoxarifado(usuario).setVisible(true);
-                this.dispose();
+            new FrmPrincipalCentral().setVisible(true);
+            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            try {
-                Usuario usuario = new UsuarioSisBR().consultar(txtCPF.getText(), 
-                    String.valueOf(txtSenha.getPassword()));
-            
-                new frmPrincipalAlmoxarifado(usuario).setVisible(true);
-                this.dispose();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, e.getMessage());
-            }
-        }
+//        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+//            try {
+//                Usuario usuario = new UsuarioSisBR().consultar(txtNome.getText(), 
+//                    String.valueOf(txtSenha.getPassword()));
+//            
+//                new frmPrincipalAlmoxarifado(usuario).setVisible(true);
+//                this.dispose();
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(rootPane, e.getMessage());
+//            }
+//        }
     }//GEN-LAST:event_txtSenhaKeyPressed
 
-    private void txtCPFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            try {
-                Usuario usuario = new UsuarioSisBR().consultar(txtCPF.getText(), 
-                    String.valueOf(txtSenha.getPassword()));
-            
-                new frmPrincipalAlmoxarifado(usuario).setVisible(true);
-                this.dispose();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, e.getMessage());
-            }
-        }
-    }//GEN-LAST:event_txtCPFKeyPressed
+    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
+//        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+//            try {
+//                Usuario usuario = new UsuarioSisBR().consultar(txtNome.getText(), 
+//                    String.valueOf(txtSenha.getPassword()));
+//            
+//                new frmPrincipalAlmoxarifado(usuario).setVisible(true);
+//                this.dispose();
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(rootPane, e.getMessage());
+//            }
+//        }
+    }//GEN-LAST:event_txtNomeKeyPressed
 
-    private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
+    private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
         try {
-            Validation.limitMaxCaracter(11, txtCPF.getText(), evt);
-            Validation.invalidSpaces(txtCPF.getText());
-            Validation.invalidCaracAndLetters(txtCPF.getText());
-            if(txtCPF.getText().isEmpty()) 
+            Validation.limitMaxCaracter(11, txtNome.getText(), evt);
+            Validation.invalidSpaces(txtNome.getText());
+            Validation.invalidCaracAndLetters(txtNome.getText());
+            if(txtNome.getText().isEmpty()) 
                 lblAvisoCpf.setText("");
         } catch (Exception e) {
             lblAvisoCpf.setText(e.getMessage());
         }
-    }//GEN-LAST:event_txtCPFKeyTyped
+    }//GEN-LAST:event_txtNomeKeyTyped
 
     private void txtSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyTyped
         try {
@@ -255,7 +254,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAvisoCpf;
     private javax.swing.JLabel lblAvisoSenha;
-    private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,7 +44,7 @@ public class PCategoria extends TPersistencia<CategoriaAbstrata>{
         ArrayList<CategoriaAbstrata> lista = new ArrayList<>();
         
         while(rs.next()){
-            lista.add(CategoriaAbstrata.getInstance(rs.getInt(1)));
+            lista.add(CategoriaAbstrata.getInstance(rs.getInt(1)-1));
         }
         return lista.iterator();
     }

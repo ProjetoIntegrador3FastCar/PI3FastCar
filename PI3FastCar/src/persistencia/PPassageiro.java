@@ -104,7 +104,7 @@ public class PPassageiro extends TPersistencia<Passageiro>{
 
     @Override
     public Iterator<Passageiro> listarPorFiltro(int opcao, String string) throws SQLException {
-        String sql = "SELECT * FROM passageiro WHERE nome LIKE ? ORDER BY codigo_passageiro;";
+        String sql = "SELECT * FROM passageiro WHERE UPPER(nome) LIKE ? ORDER BY codigo_passageiro;";
         String sql2 = "SELECT * FROM passageiro WHERE numero_celular LIKE ? ORDER BY codigo_passageiro;";
         
         Connection cnn = util.SConexao.getConexao();

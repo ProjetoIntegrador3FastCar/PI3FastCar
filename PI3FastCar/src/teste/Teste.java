@@ -14,6 +14,7 @@ import entidade.observer.DadosDaViagem;
 import java.util.ArrayList;
 import util.estruturadedados.Lista;
 import util.Validacao;
+import util.Validation;
 
 /**
  *
@@ -26,32 +27,36 @@ public class Teste {
      */
     public static void main(String[] args) throws Exception {
         try {
-            Central central = new Central();
-            Passageiro p1 = new Passageiro(central);
-            p1.setCodigoTipo(1);
-            p1.setNome("Rodrigo Leite");
-            p1.setNumeroCelular("9988");
-
-            Motorista motorista = new Motorista();
-            motorista.setCodigoMotorista(1);
-            motorista.setNome("Kleiton ");
-            motorista.setCpf("8958");
-
-            Viagem viagem = new Viagem();
-            viagem.setCodigoTipo(1);
-            viagem.setDataViagem(new java.sql.Date(System.currentTimeMillis()));
-            viagem.setLocalDestino("rua bla bla qd.");
-            viagem.setLocalOrigem("la nos quintos");
-            viagem.setMotorista(motorista);
-            viagem.setValorViagem(45.00);
-
-            Solicitacao solicita = new Solicitacao(viagem, p1, "Cartão de Credito");
-            DadosDaViagem ddv = new DadosDaViagem(solicita);
-            central.setDados(ddv);
-            central.notificarObservador();
-            System.out.println();
-            central.removerObservador(p1);
-            System.out.println(central.listarObservador().mostrarObjeto(0));
+            String texto = "UFO-0987";
+            String regex = "[\u0020-\u002C|\u002E|\u002F|\u003A-\u0040|\\u005B-\u02AC]";
+            Validation.invalidSpecCaracters(regex, texto);
+            System.out.println(texto);
+//            Central central = new Central();
+//            Passageiro p1 = new Passageiro(central);
+//            p1.setCodigoTipo(1);
+//            p1.setNome("Rodrigo Leite");
+//            p1.setNumeroCelular("9988");
+//
+//            Motorista motorista = new Motorista();
+//            motorista.setCodigoTipo(1);
+//            motorista.setNome("Kleiton ");
+//            motorista.setCpf("8958");
+//
+//            Viagem viagem = new Viagem();
+//            viagem.setCodigoTipo(1);
+//            viagem.setDataViagem(new java.sql.Date(System.currentTimeMillis()));
+//            viagem.setLocalDestino("rua bla bla qd.");
+//            viagem.setLocalOrigem("la nos quintos");
+//            viagem.setMotorista(motorista);
+//            viagem.setValorViagem(45.00);
+//
+//            Solicitacao solicita = new Solicitacao(viagem, p1, "Cartão de Credito");
+//            DadosDaViagem ddv = new DadosDaViagem(solicita);
+//            central.setDados(ddv);
+//            central.notificarObservador();
+//            System.out.println();
+//            central.removerObservador(p1);
+//            System.out.println(central.listarObservador().mostrarObjeto(0));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

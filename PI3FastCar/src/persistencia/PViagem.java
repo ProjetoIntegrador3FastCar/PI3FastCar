@@ -66,7 +66,8 @@ public class PViagem extends TPersistencia<Viagem>{
         ResultSet rs = prd.executeQuery();
         if(rs.next()){
             return new Viagem(rs.getInt(1), rs.getString(2), rs.getString(3), 
-                    rs.getDouble(4), rs.getDate(5), new PMotorista().consultar(rs.getInt(6)));
+                    rs.getDouble(4), rs.getDate(5), 
+                    new PMotorista().consultar(rs.getInt(6)), rs.getInt(7));
         }
         
         return null;
@@ -84,7 +85,8 @@ public class PViagem extends TPersistencia<Viagem>{
         
         while(rs.next()){
             lista.add(new Viagem(rs.getInt(1), rs.getString(2), rs.getString(3), 
-                    rs.getDouble(4), rs.getDate(5), new PMotorista().consultar(rs.getInt(6))));
+                    rs.getDouble(4), rs.getDate(5), 
+                    new PMotorista().consultar(rs.getInt(6)), rs.getInt(7)));
         }
         
         return lista.iterator();
@@ -118,7 +120,8 @@ public class PViagem extends TPersistencia<Viagem>{
         
         while(rs.next()){
             lista.add(new Viagem(rs.getInt(1), rs.getString(2), rs.getString(3), 
-                    rs.getDouble(4), rs.getDate(5), new PMotorista().consultar(rs.getInt(6))));
+                    rs.getDouble(4), rs.getDate(5), 
+                    new PMotorista().consultar(rs.getInt(6)), rs.getInt(7)));
         }
         
         return lista.iterator();
