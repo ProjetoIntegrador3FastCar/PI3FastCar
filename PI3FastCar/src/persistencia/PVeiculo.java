@@ -26,7 +26,7 @@ public class PVeiculo extends TPersistencia<Veiculo>{
         String sql = "INSERT INTO veiculo(modelo, cor, placa, cod_categoria)"
                 + " VALUES(?, ?, ?, ?);";
         
-        String sql2 = "SELECT currval('codigo_veiculo') as codigo";
+        String sql2 = "SELECT currval('veiculo_codigo_veiculo_seq') as codigo";
         
         this.alterarOuIncluir(veiculo, sql, sql2);
     }
@@ -133,10 +133,9 @@ public class PVeiculo extends TPersistencia<Veiculo>{
         prd.setString(2, veiculo.getCor());
         prd.setString(3, veiculo.getPlaca());
         prd.setInt(4, veiculo.getCategoria().getCodCategoria());
-        prd.setInt(5, veiculo.getCodigoVeiculo());
         
         if(veiculo.getCodigoVeiculo()> 0)
-            prd.setInt(6, veiculo.getCodigoVeiculo());
+            prd.setInt(5, veiculo.getCodigoVeiculo());
         
         return prd;
     }

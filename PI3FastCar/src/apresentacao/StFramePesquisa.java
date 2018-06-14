@@ -92,7 +92,7 @@ public enum StFramePesquisa {
             cabecalho.add("CPF");
             cabecalho.add("Código Veículo");
             cabecalho.add("Placa Veículo");
-            cabecalho.add("Status Veiculo");
+            cabecalho.add("Status Motorista");
             cabecalho.add("Status de Corrida");
             return cabecalho;
         }

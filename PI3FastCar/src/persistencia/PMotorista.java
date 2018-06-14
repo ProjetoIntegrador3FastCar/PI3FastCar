@@ -22,10 +22,10 @@ public class PMotorista extends TPersistencia<Motorista>{
     
     public void incluir(Motorista motorista) throws SQLException{
         
-        String sql = "INSERT INTO motorista(nome, cpf)"
-                + " VALUES(?, ?);";
+        String sql = "INSERT INTO motorista(nome, cpf, cod_veiculo, status_motorista, status_corrida)"
+                + " VALUES(?, ?, ?, ?, ?);";
         
-        String sql2 = "SELECT currval('codigo_motorista') as codigo";
+        String sql2 = "SELECT currval('motorista_codigo_motorista_seq') as codigo";
         
         this.alterarOuIncluir(motorista, sql, sql2);
     }
@@ -33,7 +33,7 @@ public class PMotorista extends TPersistencia<Motorista>{
     public void alterar(Motorista motorista) throws SQLException{
         
         
-        String sql = "UPDATE motorista SET nome = ? , cpf = ?,"
+        String sql = "UPDATE motorista SET nome = ? , cpf = ?, cod_veiculo = ?, status_motorista = ?, status_corrida = ?"
                 + " WHERE codigo_motorista = ?;";
         
         this.alterarOuIncluir(motorista, sql);
@@ -127,10 +127,13 @@ public class PMotorista extends TPersistencia<Motorista>{
         
         
         prd.setString(1, motorista.getNome());
-        prd.setString(2, motorista.getCpf()+"");
+        prd.setString(2, motorista.getCpf());
+        prd.setInt(3, motorista.getVeiculo().getCodigoVeiculo());
+        prd.setBoolean(4, motorista.isStatusMotorista());
+        prd.setBoolean(5, motorista.isStatusDeCorrida());
         
         
-        if(motorista.getCodigoMotorista()> 0)
+        if(motorista.getCodigoMotorista() > 0)
             prd.setInt(6, motorista.getCodigoMotorista());
         
         return prd;

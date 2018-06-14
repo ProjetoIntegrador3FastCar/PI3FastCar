@@ -9,6 +9,7 @@ package apresentacao;
 
 
 
+import entidade.Motorista;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JComboBox;
@@ -16,6 +17,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import negocio.NMotorista;
 import util.Validation;
 
 /**
@@ -202,7 +204,31 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void tblResultadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultadoMousePressed
-        
+        try {
+            if(btnAtivar.isSelected()){
+                int linha = tblResultado.getSelectedRow();
+                String codigo = tblResultado.getValueAt(linha,0).toString();
+                switch(this.opcao){
+                    case 0:
+                        FrmCadastroMotorista janelaM = new FrmCadastroMotorista(principal, 
+                                new NMotorista().consultar(Integer.parseInt(codigo)));
+                        this.principal.add(janelaM);
+                        janelaM.setVisible(true);
+                        this.dispose();
+                        break;
+                    case 1:
+                        FrmCadastroPassageiro janelaP = new FrmCadastroPassageiro(principal);
+                        this.principal.add(janelaP);
+                        janelaP.setVisible(true);
+                        this.dispose();
+                        break;
+                    default: 
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_tblResultadoMousePressed
 
     private void btnAtivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtivarActionPerformed

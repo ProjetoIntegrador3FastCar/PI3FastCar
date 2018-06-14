@@ -32,11 +32,17 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
     
     
     private void limpar(){
+        txtStatusMotorista.setText("");
         txtCodigoMotorista.setText("");
         txtNome.setText("");
         txtCpf.setText("");
         cmbCategoria.setSelectedIndex(0);
         cmbCategoria.setEnabled(true);
+        txtCodigoVeiculo.setText("");
+        txtPlaca.setText("");
+        txtCor.setText("");
+        txtModelo.setText("");
+        btnAlterarStatus.setEnabled(false);
         lblAvisoNome.setText("");
         lblAvisoCpf.setText("");
         lblAvisoPlaca.setText("");
@@ -50,12 +56,19 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
     public FrmCadastroMotorista() {
         initComponents();
         limpar();
+        popularCombo();
+        
     }
     
     public FrmCadastroMotorista(JDesktopPane principal){
         this();
         this.principal = principal;
-        popularCombo();
+    }
+    
+    public FrmCadastroMotorista(JDesktopPane principal, Motorista motorista){
+        this();
+        this.principal = principal;
+        preencherTela(motorista);
     }
 
     /**
@@ -76,7 +89,6 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
         txtCodigoMotorista = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         txtCpf = new javax.swing.JTextField();
-        cmbCategoria = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
@@ -99,6 +111,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
         lblAvisoModelo = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtStatusMotorista = new javax.swing.JTextField();
+        cmbCategoria = new javax.swing.JComboBox<>();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -117,21 +130,14 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
         txtCodigoMotorista.setEditable(false);
 
         txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNomeKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomeKeyTyped(evt);
             }
         });
 
         txtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCpfKeyTyped(evt);
-            }
-        });
-
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoria" }));
-        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCategoriaActionPerformed(evt);
             }
         });
 
@@ -181,6 +187,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
 
         jLabel5.setText("Código Veículo:");
 
+        txtCodigoVeiculo.setEditable(false);
+
         jLabel3.setText("Placa:");
 
         jLabel6.setText("Cor:");
@@ -188,20 +196,20 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
         jLabel8.setText("Modelo:");
 
         txtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPlacaKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPlacaKeyTyped(evt);
             }
         });
 
         txtCor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCorKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorKeyTyped(evt);
             }
         });
 
         txtModelo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtModeloKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtModeloKeyTyped(evt);
             }
         });
 
@@ -224,6 +232,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
         jLabel10.setText("Status:");
 
         txtStatusMotorista.setEditable(false);
+
+        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -271,8 +281,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
                                 .addGap(33, 33, 33)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4))
+                                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
@@ -282,15 +292,15 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
                                 .addComponent(btnConsultarVeiculo)
                                 .addGap(46, 46, 46))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblAvisoCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblAvisoNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAvisoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAvisoCor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAvisoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblAvisoNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblAvisoCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(lblAvisoModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                        .addComponent(lblAvisoCor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblAvisoPlaca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -353,10 +363,6 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
-        
-    }//GEN-LAST:event_cmbCategoriaActionPerformed
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         try {
             ArrayList<String> textos = new ArrayList<>();
@@ -390,16 +396,17 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             veiculo.setModelo(txtModelo.getText());
 
             motorista.setVeiculo(veiculo);
-
-            if(txtCodigoMotorista.getText() != null && !txtCodigoMotorista.getText().isEmpty()){
-                motorista.setCodigoTipo(Integer.parseInt(txtCodigoMotorista.getText()));
-            }
-
+            
             if(txtCodigoVeiculo.getText() != null && !txtCodigoVeiculo.getText().isEmpty()){
                 veiculo.setCodigoTipo(Integer.parseInt(txtCodigoVeiculo.getText()));
             }
             
             new NVeiculo().incluir(veiculo);
+
+            if(txtCodigoMotorista.getText() != null && !txtCodigoMotorista.getText().isEmpty()){
+                motorista.setCodigoTipo(Integer.parseInt(txtCodigoMotorista.getText()));
+            }
+            
             new NMotorista().incluir(motorista);
             
             limpar();
@@ -428,14 +435,6 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
-        try {
-            Validation.limitMaxCaracter(50, txtNome.getText(), evt);
-        } catch (Exception e) {
-            lblAvisoNome.setText(e.getMessage());
-        }
-    }//GEN-LAST:event_txtNomeKeyPressed
-
     private void txtCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfKeyTyped
         try {
             Validation.limitMaxCaracter(11, txtCpf.getText(), evt);
@@ -445,49 +444,35 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
     }//GEN-LAST:event_txtCpfKeyTyped
 
     private void btnAlterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarStatusActionPerformed
-//        try {
-//            int resposta = JOptionPane.showConfirmDialog(null, 
-//                    "Confirma a exclusão do \"Funcionário\" ?",
-//                    "Gestão Almoxarifado", JOptionPane.YES_NO_OPTION);
-//            
-//            if(resposta == JOptionPane.YES_OPTION){
-//                if(cmbCategoria.getSelectedIndex() == 0)
-//                    new UsuarioSisBR().deletar(Integer.parseInt(txtCodigoFunc.getText()));
-//                else
-//                    new FuncionarioBR().deletar(Integer.parseInt(txtCodigoFunc.getText()));
-//                
-//                JOptionPane.showMessageDialog(rootPane, 
-//                        "Operação efetuada com sucesso!");
-//                limpar();
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-//        }
+        try {
+            int resposta = JOptionPane.showConfirmDialog(null, 
+                    "Confirma a alteração do status deste Motorista?",
+                    "FastCar Central", JOptionPane.YES_NO_OPTION);
+            
+            if(resposta == JOptionPane.YES_OPTION){
+                Motorista motorista = new NMotorista().consultar(Integer.parseInt(txtCodigoMotorista.getText()));
+//                System.out.println(motorista.getNome());
+//                System.out.println(motorista.isStatusMotorista());
+                if(motorista.isStatusMotorista())
+                    motorista.setStatusMotorista(false);
+                else
+                    motorista.setStatusMotorista(true);
+                
+//                System.out.println(motorista.isStatusMotorista());
+                
+                if(txtCodigoMotorista.getText() != null && !txtCodigoMotorista.getText().isEmpty()){
+                    motorista.setCodigoTipo(Integer.parseInt(txtCodigoMotorista.getText()));
+                }
+                
+                new NMotorista().incluir(motorista);
+                JOptionPane.showMessageDialog(rootPane, 
+                        "Operação efetuada com sucesso!");
+                limpar();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
     }//GEN-LAST:event_btnAlterarStatusActionPerformed
-
-    private void txtPlacaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyPressed
-        try {
-            Validation.limitMaxCaracter(8, txtPlaca.getText(), evt);
-        } catch (Exception e) {
-            lblAvisoPlaca.setText(e.getMessage());
-        }
-    }//GEN-LAST:event_txtPlacaKeyPressed
-
-    private void txtCorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorKeyPressed
-        try {
-            Validation.limitMaxCaracter(10, txtCor.getText(), evt);
-        } catch (Exception e) {
-            lblAvisoCor.setText(e.getMessage());
-        }
-    }//GEN-LAST:event_txtCorKeyPressed
-
-    private void txtModeloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModeloKeyPressed
-        try {
-            Validation.limitMaxCaracter(25, txtModelo.getText(), evt);
-        } catch (Exception e) {
-            lblAvisoModelo.setText(e.getMessage());
-        }
-    }//GEN-LAST:event_txtModeloKeyPressed
 
     private void btnConsultarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarVeiculoActionPerformed
         try {
@@ -498,6 +483,38 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_btnConsultarVeiculoActionPerformed
+
+    private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
+        try {
+            Validation.limitMaxCaracter(50, txtNome.getText(), evt);
+        } catch (Exception e) {
+            lblAvisoNome.setText(e.getMessage());
+        }
+    }//GEN-LAST:event_txtNomeKeyTyped
+
+    private void txtPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyTyped
+        try {
+            Validation.limitMaxCaracter(8, txtPlaca.getText(), evt);
+        } catch (Exception e) {
+            lblAvisoPlaca.setText(e.getMessage());
+        }
+    }//GEN-LAST:event_txtPlacaKeyTyped
+
+    private void txtCorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorKeyTyped
+        try {
+            Validation.limitMaxCaracter(10, txtCor.getText(), evt);
+        } catch (Exception e) {
+            lblAvisoCor.setText(e.getMessage());
+        }
+    }//GEN-LAST:event_txtCorKeyTyped
+
+    private void txtModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModeloKeyTyped
+        try {
+            Validation.limitMaxCaracter(25, txtModelo.getText(), evt);
+        } catch (Exception e) {
+            lblAvisoModelo.setText(e.getMessage());
+        }
+    }//GEN-LAST:event_txtModeloKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -578,15 +595,19 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
 
     @Override
     public void preencherTela(Motorista motorista) {
-        txtCodigoMotorista.setText(Integer.toString(motorista.getCodigoMotorista()));
-        txtStatusMotorista.setText((motorista.isStatusMotorista()) ? "Ativo" : "Desativado");
-        txtNome.setText(motorista.getNome());
-        txtCpf.setText(motorista.getCpf());
-        txtCodigoVeiculo.setText(Integer.toString(motorista.getVeiculo().getCodigoVeiculo()));
-        cmbCategoria.setSelectedIndex(motorista.getVeiculo().getCategoria().getCodCategoria()-1);
-        txtPlaca.setText(motorista.getVeiculo().getPlaca());
-        txtCor.setText(motorista.getVeiculo().getCor());
-        txtModelo.setText(motorista.getVeiculo().getModelo());
+        try {
+            txtCodigoMotorista.setText(Integer.toString(motorista.getCodigoMotorista()));
+            txtStatusMotorista.setText((motorista.isStatusMotorista() == true) ? "Ativo" : "Desativado");
+            txtNome.setText(motorista.getNome());
+            txtCpf.setText(motorista.getCpf());
+            txtCodigoVeiculo.setText(Integer.toString(motorista.getVeiculo().getCodigoVeiculo()));
+            cmbCategoria.setSelectedItem(motorista.getVeiculo().getCategoria().getDescricao());
+            txtPlaca.setText(motorista.getVeiculo().getPlaca());
+            txtCor.setText(motorista.getVeiculo().getCor());
+            txtModelo.setText(motorista.getVeiculo().getModelo());
+            btnAlterarStatus.setEnabled(true);
+        } catch (Exception e) {
+        }
     }
 
     
