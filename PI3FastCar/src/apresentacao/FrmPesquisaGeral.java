@@ -16,6 +16,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import util.Validation;
 
 /**
  *
@@ -30,6 +31,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
      */
     public FrmPesquisaGeral() {
         initComponents();
+        lblAvisoPesquisa.setText("");
     }
     
     public FrmPesquisaGeral(JDesktopPane principal, int opcao){
@@ -61,6 +63,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
         btnAtivar = new javax.swing.JToggleButton();
         txtPesquisa = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
+        lblAvisoPesquisa = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,17 +104,11 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblResultado);
 
-        cmbFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbFiltroActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Filtrar por:");
 
-        jLabel2.setText("Ativar mouse:");
+        jLabel2.setText("Mouse:");
 
-        btnAtivar.setText("Mouse Desativado");
+        btnAtivar.setText("Desativado");
         btnAtivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtivarActionPerformed(evt);
@@ -124,6 +121,8 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                 btnPesquisarActionPerformed(evt);
             }
         });
+
+        lblAvisoPesquisa.setText("Aviso Pesquisa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,13 +140,15 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtivar))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68)
                         .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnAtivar))
+                    .addComponent(lblAvisoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,10 +160,15 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAtivar)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAtivar)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblAvisoPesquisa)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -176,27 +182,48 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         if(this.opcao == 3) this.dispose();
         else{
-            FrmCadastroMotorista janelaM = new FrmCadastroMotorista(principal);
-            this.principal.add(janelaM);
-            janelaM.setVisible(true);
-            this.dispose();
+            switch(this.opcao){
+                case 0: 
+                    FrmCadastroMotorista janelaM = new FrmCadastroMotorista(principal);
+                    this.principal.add(janelaM);
+                    janelaM.setVisible(true);
+                    this.dispose();
+                    break;
+                case 1:
+                    FrmCadastroPassageiro janelaP = new FrmCadastroPassageiro(principal);
+                    this.principal.add(janelaP);
+                    janelaP.setVisible(true);
+                    this.dispose();
+                    break;
+                default: 
+                    break;
+            }
         }
     }//GEN-LAST:event_btnFecharActionPerformed
-
-    private void cmbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFiltroActionPerformed
-        
-    }//GEN-LAST:event_cmbFiltroActionPerformed
 
     private void tblResultadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultadoMousePressed
         
     }//GEN-LAST:event_tblResultadoMousePressed
 
     private void btnAtivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtivarActionPerformed
-        
+        if(btnAtivar.isSelected()){
+            btnAtivar.setText("Ativado");
+            tblResultado.setEnabled(true);
+        } else{
+            tblResultado.setRowSelectionAllowed(false);
+            tblResultado.setEnabled(false);
+            btnAtivar.setText("Desativado");
+        }
     }//GEN-LAST:event_btnAtivarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        preencherPorFiltro(cmbFiltro.getSelectedIndex(), txtPesquisa.getText().toUpperCase());
+        try {
+            Validation.isEmpty(txtPesquisa.getText());
+            preencherPorFiltro(cmbFiltro.getSelectedIndex(), txtPesquisa.getText().toUpperCase());
+            lblAvisoPesquisa.setText("");
+        } catch (Exception e) {
+            lblAvisoPesquisa.setText(e.getMessage());
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
 
@@ -210,6 +237,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblAvisoPesquisa;
     private javax.swing.JTable tblResultado;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
