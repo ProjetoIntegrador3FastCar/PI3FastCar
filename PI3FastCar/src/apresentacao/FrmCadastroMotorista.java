@@ -121,28 +121,36 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
 
         setTitle("Cadastro de Motorista");
 
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel1.setText("Código Motorista:");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel2.setText("Nome:");
 
+        jLabel4.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel4.setText("CPF:");
 
         txtCodigoMotorista.setEditable(false);
+        txtCodigoMotorista.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
 
+        txtNome.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNomeKeyTyped(evt);
             }
         });
 
+        txtCpf.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCpfKeyTyped(evt);
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel7.setText("Categoria Veículo:");
 
+        btnCadastrar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +158,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             }
         });
 
+        btnLimpar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +166,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             }
         });
 
+        btnFechar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +174,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             }
         });
 
+        btnAlterarStatus.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnAlterarStatus.setText("Alterar Status");
         btnAlterarStatus.setEnabled(false);
         btnAlterarStatus.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +183,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             }
         });
 
+        btnPesquisar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,40 +191,49 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             }
         });
 
-        lblAvisoNome.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoNome.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoNome.setText("Aviso Nome");
 
-        lblAvisoCpf.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoCpf.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoCpf.setText("Aviso CPF");
 
+        jLabel5.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel5.setText("Código Veículo:");
 
         txtCodigoVeiculo.setEditable(false);
+        txtCodigoVeiculo.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel3.setText("Placa:");
 
+        jLabel6.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel6.setText("Cor:");
 
+        jLabel8.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel8.setText("Modelo:");
 
+        txtPlaca.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPlacaKeyTyped(evt);
             }
         });
 
+        txtCor.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtCor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCorKeyTyped(evt);
             }
         });
 
+        txtModelo.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtModelo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtModeloKeyTyped(evt);
             }
         });
 
+        btnConsultarVeiculo.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnConsultarVeiculo.setText("Consultar Veículos");
         btnConsultarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,19 +241,22 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             }
         });
 
-        lblAvisoPlaca.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoPlaca.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoPlaca.setText("Aviso Placa");
 
-        lblAvisoCor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoCor.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoCor.setText("Aviso Cor");
 
-        lblAvisoModelo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoModelo.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoModelo.setText("Aviso Modelo");
 
+        jLabel10.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel10.setText("Status:");
 
         txtStatusMotorista.setEditable(false);
+        txtStatusMotorista.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
 
+        cmbCategoria.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -240,32 +264,33 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCodigoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtStatusMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnPesquisar)))
-                .addGap(63, 63, 63))
+                .addGap(28, 28, 28)
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnAlterarStatus)
+                .addGap(41, 41, 41)
+                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnAlterarStatus)
-                        .addGap(41, 41, 41)
-                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(117, 117, 117)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtCodigoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtStatusMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnPesquisar)))
+                        .addGap(37, 37, 37))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -281,28 +306,26 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
                                 .addGap(33, 33, 33)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13))
+                                .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                    .addComponent(txtModelo, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCor, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPlaca, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(txtPlaca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnConsultarVeiculo)
-                                .addGap(46, 46, 46))
+                                .addGap(33, 33, 33))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                    .addComponent(txtNome)
                                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblAvisoNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblAvisoCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblAvisoModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                        .addComponent(lblAvisoCor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblAvisoPlaca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                                    .addComponent(lblAvisoModelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblAvisoCor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblAvisoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(142, 142, 142)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,7 +374,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAvisoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnAlterarStatus)

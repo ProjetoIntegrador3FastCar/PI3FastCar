@@ -55,13 +55,16 @@ public class FrmLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel1.setText("Nome:");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel2.setText("Senha:");
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 0, 24)); // NOI18N
         jLabel3.setText("Login");
 
+        txtNome.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomeKeyPressed(evt);
@@ -71,6 +74,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        txtSenha.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSenhaKeyPressed(evt);
@@ -80,6 +84,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        btnEntrar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,11 +92,11 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
-        lblAvisoCpf.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoCpf.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoCpf.setText("Aviso Nome");
         lblAvisoCpf.setPreferredSize(new java.awt.Dimension(41, 17));
 
-        lblAvisoSenha.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoSenha.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoSenha.setText("Aviso Senha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,9 +106,6 @@ public class FrmLogin extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -117,8 +119,11 @@ public class FrmLogin extends javax.swing.JFrame {
                             .addComponent(lblAvisoCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
-                        .addComponent(btnEntrar)))
-                .addGap(47, 47, Short.MAX_VALUE))
+                        .addComponent(btnEntrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel3)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +144,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAvisoSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(btnEntrar)
                 .addGap(16, 16, 16))
         );

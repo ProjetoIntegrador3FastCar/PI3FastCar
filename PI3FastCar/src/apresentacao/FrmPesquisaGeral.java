@@ -80,7 +80,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        btnFechar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnFechar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +88,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
             }
         });
 
+        tblResultado.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         tblResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -106,10 +107,15 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblResultado);
 
+        cmbFiltro.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel1.setText("Filtrar por:");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel2.setText("Mouse:");
 
+        btnAtivar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnAtivar.setText("Desativado");
         btnAtivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +123,9 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
             }
         });
 
+        txtPesquisa.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
+
+        btnPesquisar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +133,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
             }
         });
 
+        lblAvisoPesquisa.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoPesquisa.setText("Aviso Pesquisa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,11 +157,13 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblAvisoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(273, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblAvisoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +183,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblAvisoPesquisa)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnFechar)

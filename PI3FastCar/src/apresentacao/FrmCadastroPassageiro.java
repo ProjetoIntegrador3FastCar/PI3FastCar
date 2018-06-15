@@ -78,26 +78,33 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
 
         setTitle("Cadastro de Passageiro");
 
+        jLabel1.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel1.setText("Código Passageiro:");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel2.setText("Nome:");
 
+        jLabel4.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         jLabel4.setText("Número Celular");
 
         txtCodigoPassageiro.setEditable(false);
+        txtCodigoPassageiro.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
 
+        txtNome.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomeKeyPressed(evt);
             }
         });
 
+        txtNumeroCelular.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         txtNumeroCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroCelularKeyTyped(evt);
             }
         });
 
+        btnCadastrar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +112,7 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
             }
         });
 
+        btnLimpar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +120,7 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
             }
         });
 
+        btnFechar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +128,7 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
             }
         });
 
+        btnPesquisar.setFont(new java.awt.Font("Lucida Bright", 0, 12)); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,10 +136,10 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
             }
         });
 
-        lblAvisoNome.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoNome.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoNome.setText("Aviso Nome");
 
-        lblAvisoNumero.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblAvisoNumero.setFont(new java.awt.Font("Lucida Bright", 2, 12)); // NOI18N
         lblAvisoNumero.setText("Aviso Número");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,7 +205,7 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
                     .addComponent(btnLimpar)
                     .addComponent(btnFechar)
                     .addComponent(btnCadastrar))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();

@@ -83,8 +83,12 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
             .addGap(0, 515, Short.MAX_VALUE)
         );
 
+        jMenu1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jMenu1.setText("Cadastro");
+        jMenu1.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        jMenu1.setMaximumSize(new java.awt.Dimension(120, 32780));
 
+        mnuCadastroMotorista.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         mnuCadastroMotorista.setText("Cadastro de Motorista");
         mnuCadastroMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +97,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
         });
         jMenu1.add(mnuCadastroMotorista);
 
+        mnuCadastroPassageiro.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         mnuCadastroPassageiro.setText("Cadastro de Passageiro");
         mnuCadastroPassageiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,8 +108,12 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jMenu2.setText("Viagens");
+        jMenu2.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        jMenu2.setMaximumSize(new java.awt.Dimension(120, 32780));
 
+        mnuMovimentacao.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         mnuMovimentacao.setText("Registro de Viagens");
         mnuMovimentacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,11 +124,18 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jMenu4.setText("Relatórios");
+        jMenu4.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        jMenu4.setMaximumSize(new java.awt.Dimension(120, 32780));
         jMenuBar1.add(jMenu4);
 
+        jMenu3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jMenu3.setText("Sair");
+        jMenu3.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
+        jMenu3.setMaximumSize(new java.awt.Dimension(120, 32780));
 
+        mnuSair.setFont(new java.awt.Font("Lucida Bright", 0, 14)); // NOI18N
         mnuSair.setText("Sair");
         mnuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

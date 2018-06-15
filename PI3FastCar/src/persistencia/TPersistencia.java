@@ -60,8 +60,8 @@ public abstract class TPersistencia<T>{
                 }
             }
         }catch(Exception e){
-            cnn.rollback();
             e.printStackTrace();
+            cnn.rollback();
         }
         cnn.close();
     }
