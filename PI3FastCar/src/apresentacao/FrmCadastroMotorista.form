@@ -116,11 +116,9 @@
                                   <Component id="txtCpf" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                                   <Component id="lblAvisoNome" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblAvisoCpf" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="lblAvisoModelo" alignment="0" pref="230" max="32767" attributes="0"/>
-                                      <Component id="lblAvisoCor" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="lblAvisoPlaca" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblAvisoModelo" alignment="0" pref="242" max="32767" attributes="0"/>
+                                  <Component id="lblAvisoCor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblAvisoPlaca" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -375,12 +373,7 @@
     <Component class="javax.swing.JComboBox" name="cmbCategoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>

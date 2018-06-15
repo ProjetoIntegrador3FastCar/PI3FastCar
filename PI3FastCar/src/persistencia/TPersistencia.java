@@ -43,10 +43,10 @@ public abstract class TPersistencia<T>{
     public void alterarOuIncluir(T obj, String... sql) throws SQLException{
         Connection cnn = util.SConexao.getConexao();
         
-        String sql2 = sql[0];
         
         cnn.setAutoCommit(false);
         try{
+        String sql2 = sql[0];
             PreparedStatement prd = prepararDeclaracao(obj, cnn, sql2);
 
             prd.execute();
@@ -58,10 +58,11 @@ public abstract class TPersistencia<T>{
                 if (rs.next()) {
                     ((Codigo)obj).setCodigoTipo(rs.getInt("codigo"));
                 }
+                rs.close();
             }
+            cnn.commit();
         }catch(Exception e){
             cnn.rollback();
-            e.printStackTrace();
         }
         cnn.close();
     }

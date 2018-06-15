@@ -55,9 +55,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
      */
     public FrmCadastroMotorista() {
         initComponents();
-        limpar();
         popularCombo();
-        
+        limpar();
     }
     
     public FrmCadastroMotorista(JDesktopPane principal){
@@ -233,8 +232,6 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
 
         txtStatusMotorista.setEditable(false);
 
-        cmbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -297,10 +294,9 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
                                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblAvisoNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblAvisoCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblAvisoModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                        .addComponent(lblAvisoCor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblAvisoPlaca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(lblAvisoModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                    .addComponent(lblAvisoCor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblAvisoPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -564,44 +560,17 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
 //            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-
-//    private void preencherTelaAlmox(Funcionario func) {
-//        try {
-//            txtCodigoFunc.setText(func.getId()+"");
-//            txtMatricula.setText(func.getMatricula());
-//            txtNome.setText(func.getNome());
-//            
-//            btnExcluir.setEnabled(true);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-//        }
-//    }
-//
-//    private void preencherTelaSis(Usuario usuario) {
-//        try {
-//            txtCodigoFunc.setText(usuario.getFuncionario().getId()+"");
-//            txtCodUsuario.setText(usuario.getIdUsuario()+"");
-//            txtMatricula.setText(usuario.getFuncionario().getMatricula());
-//            txtNome.setText(usuario.getFuncionario().getNome());
-//            txtCpf.setText(usuario.getCpf()+"");
-//            txtEmail.setText(usuario.getEmail());
-//            txtSenha.setText(usuario.getSenha());
-//            
-//            btnExcluir.setEnabled(true);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-//        }
-//    }
-
+    
     @Override
     public void preencherTela(Motorista motorista) {
         try {
+            System.out.println(motorista.getVeiculo().getCategoria().getDescricao());
             txtCodigoMotorista.setText(Integer.toString(motorista.getCodigoMotorista()));
-            txtStatusMotorista.setText((motorista.isStatusMotorista() == true) ? "Ativo" : "Desativado");
+            txtStatusMotorista.setText((motorista.isStatusMotorista()) ? "Ativo" : "Desativado");
             txtNome.setText(motorista.getNome());
             txtCpf.setText(motorista.getCpf());
             txtCodigoVeiculo.setText(Integer.toString(motorista.getVeiculo().getCodigoVeiculo()));
-            cmbCategoria.setSelectedItem(motorista.getVeiculo().getCategoria().getDescricao());
+//            cmbCategoria.setSelectedItem(motorista.getVeiculo().getCategoria().getDescricao());
             txtPlaca.setText(motorista.getVeiculo().getPlaca());
             txtCor.setText(motorista.getVeiculo().getCor());
             txtModelo.setText(motorista.getVeiculo().getModelo());
