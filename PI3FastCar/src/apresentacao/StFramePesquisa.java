@@ -5,6 +5,7 @@
  */
 package apresentacao;
 
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -13,6 +14,7 @@ import persistencia.PMotorista;
 import persistencia.PPassageiro;
 import persistencia.PVeiculo;
 import persistencia.PVeiculo;
+import persistencia.PViagem;
 
 /**
  *
@@ -35,7 +37,6 @@ public enum StFramePesquisa {
                     linha.add(Integer.toString(motorista.getVeiculo().getCodigoVeiculo()));
                     linha.add(motorista.getVeiculo().getPlaca());
                     linha.add((motorista.isStatusMotorista()) ? "Ativo" : "Desativado");
-                    linha.add((motorista.isStatusDeCorrida()) ? "Em corrida" : "Disponível");
                     
                     detalhe.add(linha);
                 });
@@ -72,7 +73,6 @@ public enum StFramePesquisa {
                     linha.add(Integer.toString(motorista.getVeiculo().getCodigoVeiculo()));
                     linha.add(motorista.getVeiculo().getPlaca());
                     linha.add((motorista.isStatusMotorista()) ? "Ativo" : "Desativado");
-                    linha.add((motorista.isStatusDeCorrida()) ? "Em corrida" : "Disponível");
                     
                     detalhe.add(linha);
                 });
@@ -93,7 +93,6 @@ public enum StFramePesquisa {
             cabecalho.add("Código Veículo");
             cabecalho.add("Placa Veículo");
             cabecalho.add("Status Motorista");
-            cabecalho.add("Status de Corrida");
             return cabecalho;
         }
         
@@ -165,22 +164,83 @@ public enum StFramePesquisa {
     FRM_VIAGEM{
         @Override
         public void preencherTabela(JTable tabela) {
-            
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Vector detalhe = new Vector<>();
+                
+                new PViagem().listar().forEachRemaining(viagem ->{
+                    Vector<String> linha = new Vector<>();
+                    linha.add(Integer.toString(viagem.getCodigoViagem()));
+                    linha.add(viagem.getLocalOrigem());
+                    linha.add(viagem.getLocalDestino());
+                    linha.add(Double.toString(viagem.getValorViagem()));
+                    linha.add(sdf.format(viagem.getDataViagem()));
+                    linha.add(Integer.toString(viagem.getMotorista().getCodigoMotorista()));
+                    linha.add(viagem.getMotorista().getNome());
+                    linha.add((viagem.getAvaliacao() == 0) ? "Sem avaliação" :
+                            Integer.toString(viagem.getAvaliacao()));
+                    detalhe.add(linha);
+                });
+                
+                tabela.setModel(new DefaultTableModel(detalhe, getCabecalho()));
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void preencherCombo(JComboBox cmb) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+                cmb.addItem("Código da viagem");
+                cmb.addItem("Data");
+                cmb.addItem("Nome do motorista");
+                cmb.addItem("Código do motorista");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void preencherPorFiltro(JTable tabela, int opcao, String filtro) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Vector detalhe = new Vector<>();
+                
+                new PViagem().listarPorFiltro(opcao, filtro).forEachRemaining(viagem ->{
+                    Vector<String> linha = new Vector<>();
+                    linha.add(Integer.toString(viagem.getCodigoViagem()));
+                    linha.add(viagem.getLocalOrigem());
+                    linha.add(viagem.getLocalDestino());
+                    linha.add(Double.toString(viagem.getValorViagem()));
+                    linha.add(sdf.format(viagem.getDataViagem()));
+                    linha.add(Integer.toString(viagem.getMotorista().getCodigoMotorista()));
+                    linha.add(viagem.getMotorista().getNome());
+                    linha.add((viagem.getAvaliacao() == 0) ? "Sem avaliação" :
+                            Integer.toString(viagem.getAvaliacao()));
+                    detalhe.add(linha);
+                });
+                
+                tabela.setModel(new DefaultTableModel(detalhe, getCabecalho()));
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public Vector<String> getCabecalho() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            Vector<String> cabecalho = new Vector<>();
+            cabecalho.add("Código Viagem");
+            cabecalho.add("Local de Origem");
+            cabecalho.add("Local de Destino");
+            cabecalho.add("Valor da Viagem");
+            cabecalho.add("Data da Viagem");
+            cabecalho.add("Código do Motorista");
+            cabecalho.add("Nome do Motorista");
+            cabecalho.add("Avaliação");
+            
+            return cabecalho;
         }
         
     },

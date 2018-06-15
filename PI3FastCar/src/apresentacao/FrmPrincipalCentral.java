@@ -9,6 +9,7 @@ package apresentacao;
 
 
 //import entidade.Usuario;
+import entidade.observer.Central;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +20,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
     /**
      * Creates new form frmPrincipalCampeonato
      */
-//    static Usuario usuarioSis;
+    static Central central;
     
     public FrmPrincipalCentral() {
         initComponents();
@@ -62,7 +63,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
         mnuCadastroMotorista = new javax.swing.JMenuItem();
         mnuCadastroPassageiro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        mnuMovimentacao = new javax.swing.JMenuItem();
+        mnuRegistroViagens = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         mnuSair = new javax.swing.JMenuItem();
@@ -105,13 +106,13 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
 
         jMenu2.setText("Viagens");
 
-        mnuMovimentacao.setText("Registro de Viagens");
-        mnuMovimentacao.addActionListener(new java.awt.event.ActionListener() {
+        mnuRegistroViagens.setText("Registro de Viagens");
+        mnuRegistroViagens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuMovimentacaoActionPerformed(evt);
+                mnuRegistroViagensActionPerformed(evt);
             }
         });
-        jMenu2.add(mnuMovimentacao);
+        jMenu2.add(mnuRegistroViagens);
 
         jMenuBar1.add(jMenu2);
 
@@ -172,15 +173,15 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnuCadastroPassageiroActionPerformed
 
-    private void mnuMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMovimentacaoActionPerformed
+    private void mnuRegistroViagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistroViagensActionPerformed
         try {
-//            frmMovimentacao frm = new frmMovimentacao(this.pnlPrincipal, usuarioSis);
-//            this.pnlPrincipal.add(frm);
-//            frm.setVisible(true);
+            FrmRegistroViagem frm = new FrmRegistroViagem(this.pnlPrincipal);
+            this.pnlPrincipal.add(frm);
+            frm.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-    }//GEN-LAST:event_mnuMovimentacaoActionPerformed
+    }//GEN-LAST:event_mnuRegistroViagensActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,7 +228,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem mnuCadastroMotorista;
     private javax.swing.JMenuItem mnuCadastroPassageiro;
-    private javax.swing.JMenuItem mnuMovimentacao;
+    private javax.swing.JMenuItem mnuRegistroViagens;
     private javax.swing.JMenuItem mnuSair;
     private javax.swing.JDesktopPane pnlPrincipal;
     // End of variables declaration//GEN-END:variables

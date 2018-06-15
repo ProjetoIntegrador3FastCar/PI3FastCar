@@ -37,12 +37,12 @@
             <Property name="text" type="java.lang.String" value="Viagens"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuMovimentacao">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuRegistroViagens">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registro de Viagens"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMovimentacaoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRegistroViagensActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

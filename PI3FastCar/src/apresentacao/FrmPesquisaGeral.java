@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import negocio.NMotorista;
+import negocio.NPassageiro;
 import util.Validation;
 
 /**
@@ -197,6 +198,12 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                     janelaP.setVisible(true);
                     this.dispose();
                     break;
+                case 2: 
+                    FrmRegistroViagem janelaRv = new FrmRegistroViagem(principal);
+                    this.principal.add(janelaRv);
+                    janelaRv.setVisible(true);
+                    this.dispose();
+                    break;
                 default: 
                     break;
             }
@@ -217,11 +224,18 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                         this.dispose();
                         break;
                     case 1:
-                        FrmCadastroPassageiro janelaP = new FrmCadastroPassageiro(principal);
+                        FrmCadastroPassageiro janelaP = new FrmCadastroPassageiro(principal, 
+                                new NPassageiro().consultar(Integer.parseInt(codigo)));
                         this.principal.add(janelaP);
                         janelaP.setVisible(true);
                         this.dispose();
                         break;
+                    case 2: 
+                        FrmRegistroViagem janelaRv = new FrmRegistroViagem(principal);
+                        this.principal.add(janelaRv);
+                        janelaRv.setVisible(true);
+                        this.dispose();
+                    break;
                     default: 
                         break;
                 }

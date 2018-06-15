@@ -44,6 +44,12 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
         this();
         this.principal = principal;
     }
+    
+    public FrmCadastroPassageiro(JDesktopPane principal, Passageiro passageiro){
+        this();
+        this.principal = principal;
+        preencherTela(passageiro);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -293,34 +299,4 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
         txtNome.setText(passageiro.getNome());
         txtNumeroCelular.setText(passageiro.getNumeroCelular());
     }
-
-//    private void preencherTelaAlmox(Funcionario func) {
-//        try {
-//            txtCodigoFunc.setText(func.getId()+"");
-//            txtMatricula.setText(func.getMatricula());
-//            txtNome.setText(func.getNome());
-//            
-//            btnExcluir.setEnabled(true);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-//        }
-//    }
-//
-//    private void preencherTelaSis(Passageiro usuario) {
-//        try {
-//            txtCodigoFunc.setText(usuario.getFuncionario().getId()+"");
-//            txtCodPassageiro.setText(usuario.getIdPassageiro()+"");
-//            txtMatricula.setText(usuario.getFuncionario().getMatricula());
-//            txtNome.setText(usuario.getFuncionario().getNome());
-//            txtCpf.setText(usuario.getCpf()+"");
-//            txtEmail.setText(usuario.getEmail());
-//            txtSenha.setText(usuario.getSenha());
-//            
-//            btnExcluir.setEnabled(true);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-//        }
-//    }
-
-    
 }
