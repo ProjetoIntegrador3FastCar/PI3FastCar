@@ -55,9 +55,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
      */
     public FrmCadastroMotorista() {
         initComponents();
-        limpar();
         popularCombo();
-        
+        limpar();
     }
     
     public FrmCadastroMotorista(JDesktopPane principal){
@@ -587,44 +586,17 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
 //            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-
-//    private void preencherTelaAlmox(Funcionario func) {
-//        try {
-//            txtCodigoFunc.setText(func.getId()+"");
-//            txtMatricula.setText(func.getMatricula());
-//            txtNome.setText(func.getNome());
-//            
-//            btnExcluir.setEnabled(true);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-//        }
-//    }
-//
-//    private void preencherTelaSis(Usuario usuario) {
-//        try {
-//            txtCodigoFunc.setText(usuario.getFuncionario().getId()+"");
-//            txtCodUsuario.setText(usuario.getIdUsuario()+"");
-//            txtMatricula.setText(usuario.getFuncionario().getMatricula());
-//            txtNome.setText(usuario.getFuncionario().getNome());
-//            txtCpf.setText(usuario.getCpf()+"");
-//            txtEmail.setText(usuario.getEmail());
-//            txtSenha.setText(usuario.getSenha());
-//            
-//            btnExcluir.setEnabled(true);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-//        }
-//    }
-
+    
     @Override
     public void preencherTela(Motorista motorista) {
         try {
+            System.out.println(motorista.getVeiculo().getCategoria().getDescricao());
             txtCodigoMotorista.setText(Integer.toString(motorista.getCodigoMotorista()));
-            txtStatusMotorista.setText((motorista.isStatusMotorista() == true) ? "Ativo" : "Desativado");
+            txtStatusMotorista.setText((motorista.isStatusMotorista()) ? "Ativo" : "Desativado");
             txtNome.setText(motorista.getNome());
             txtCpf.setText(motorista.getCpf());
             txtCodigoVeiculo.setText(Integer.toString(motorista.getVeiculo().getCodigoVeiculo()));
-            cmbCategoria.setSelectedItem(motorista.getVeiculo().getCategoria().getDescricao());
+//            cmbCategoria.setSelectedItem(motorista.getVeiculo().getCategoria().getDescricao());
             txtPlaca.setText(motorista.getVeiculo().getPlaca());
             txtCor.setText(motorista.getVeiculo().getCor());
             txtModelo.setText(motorista.getVeiculo().getModelo());

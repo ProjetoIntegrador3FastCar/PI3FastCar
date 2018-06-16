@@ -75,8 +75,14 @@ public class Passageiro implements Codigo, Comparable<Passageiro>, Observador, M
 
     @Override
     public void mostrar() {
-        System.out.println("-------- Dados para avaliação --------");
-        System.out.printf("Motorista: %s\n", dados.getMotorista().getNome());
+        StringBuilder re = new StringBuilder();
+        re.append("-------- Dados para avaliação --------\n");
+        re.append("Motorista: ");
+        re.append(dados.getMotorista().getNome());
+        re.append("\n");
+        re.append("Legenda para avaliação: 1 - Ruim; 2 - Regular; 3 - Ótimo\n");
+        
+        System.out.println(re.toString());;
     }
     
 }

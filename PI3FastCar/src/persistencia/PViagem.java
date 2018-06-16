@@ -96,7 +96,9 @@ public class PViagem extends TPersistencia<Viagem>{
     public Iterator<Viagem> listarPorFiltro(int opcao, String filtro) throws SQLException {
         String sql = "SELECT * FROM viagem WHERE codigo_viagem = ? ORDER BY codigo_viagem;";
         String sql2 = "SELECT * FROM viagem WHERE TO_CHAR(data_viagem, 'DD/MM/YYYY') LIKE ? ORDER BY codigo_viagem;";
-        String sql3 = "SELECT * FROM viagem WHERE codigo_motorista = ? ORDER BY codigo_viagem;";
+        String sql3 = "SELECT * FROM viagem v INNER JOIN motorista m ON v.cod_motorista = m.codigo_motorista"
+                + " WHERE UPPER(m.nome) LIKE ? ORDER BY codigo_viagem;";
+        String sql4 = "SELECT * FROM viagem WHERE cod_motorista = ? ORDER BY codigo_viagem;";
         
         Connection cnn = util.SConexao.getConexao();
         PreparedStatement prd;
@@ -109,8 +111,12 @@ public class PViagem extends TPersistencia<Viagem>{
                 prd = cnn.prepareStatement(sql2);
                 prd.setString(1, "%" + filtro + "%");
                 break;
-            default:
+            case 2:
                 prd = cnn.prepareStatement(sql3);
+                prd.setString(1, "%" + filtro + "%");
+                break;
+            default:
+                prd = cnn.prepareStatement(sql4);
                 prd.setInt(1, Integer.parseInt(filtro));
                 break;
         }
