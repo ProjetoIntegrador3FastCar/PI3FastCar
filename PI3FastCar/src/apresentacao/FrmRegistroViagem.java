@@ -58,6 +58,7 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
     public FrmRegistroViagem(JDesktopPane principal, Solicitacao inscricao){
         this();
         this.principal = principal;
+        preencherTela(inscricao);
     }
 
 
@@ -94,7 +95,7 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         btnNotificar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtStatusMotorista = new javax.swing.JTextField();
-        btnAtualizarStatus = new javax.swing.JButton();
+        btnFinalizarViagem = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
@@ -179,6 +180,7 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtNumeroCel.setEditable(false);
 
         btnNotificar.setText("Notificar Passageiros");
+        btnNotificar.setEnabled(false);
         btnNotificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNotificarActionPerformed(evt);
@@ -189,10 +191,11 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
 
         txtStatusMotorista.setEditable(false);
 
-        btnAtualizarStatus.setText("Atualizar Motoristas");
-        btnAtualizarStatus.addActionListener(new java.awt.event.ActionListener() {
+        btnFinalizarViagem.setText("Finalizar Viagem");
+        btnFinalizarViagem.setEnabled(false);
+        btnFinalizarViagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtualizarStatusActionPerformed(evt);
+                btnFinalizarViagemActionPerformed(evt);
             }
         });
 
@@ -258,8 +261,8 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
                         .addContainerGap())
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(btnAtualizarStatus)
+                .addGap(71, 71, 71)
+                .addComponent(btnFinalizarViagem, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNotificar)
                 .addGap(45, 45, 45))
@@ -305,11 +308,14 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNotificar)
-                    .addComponent(btnAtualizarStatus))
-                .addGap(49, 49, 49))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNotificar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnFinalizarViagem)))
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -349,14 +355,15 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             
             int op = JOptionPane.showOptionDialog(rootPane, "Forma de pagamento", "Pagamento", 
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Cartão de Crédito", "Dinheiro"}, 0);
-            
+            if(op == -1) return;
             solicitacao.setFormaDePagamento((op == 0) ? "Cartão de Crédito": "Dinheiro");
-            
+            motorista.setStatusDeCorrida(true);
             if(txtCodigoViagem.getText() != null && !txtCodigoViagem.getText().isEmpty()){
                 viagem.setCodigoTipo(Integer.parseInt(txtCodigoViagem.getText()));
                 solicitacao.setCodigoTipo(Integer.parseInt(txtCodigoViagem.getText()));
             }
             
+            new NMotorista().incluir(motorista);
             solicitacao.setViagem(viagem);
             solicitacao.setPassageiro(passageiro);
             
@@ -364,6 +371,7 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             new NSolicitacao().incluir(solicitacao);
 //            this.solicitacao = solicit;
             JOptionPane.showMessageDialog(null, "Viagem registrada com sucesso!");
+            preencherTabelas();
             limpar();
         } catch (Exception e) {
             e.printStackTrace();
@@ -377,6 +385,14 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtCodigoMotorista.setText(tblMotorista.getValueAt(linha,0).toString());
         txtNomeMotorista.setText(tblMotorista.getValueAt(linha,1).toString());
         txtStatusMotorista.setText(tblMotorista.getValueAt(linha,2).toString());
+        
+        if(tblMotorista.getValueAt(linha,2).toString().equalsIgnoreCase("Em corrida")){
+            btnRegistrar.setEnabled(false);
+            btnFinalizarViagem.setEnabled(true);
+        } else{
+            btnRegistrar.setEnabled(true);
+            btnFinalizarViagem.setEnabled(false);
+        }
     }//GEN-LAST:event_tblMotoristaMousePressed
 
     private void tblPassageiroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPassageiroMousePressed
@@ -388,6 +404,7 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
 
     private void btnNotificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificarActionPerformed
         atualizar();
+        btnNotificar.setEnabled(false);
     }//GEN-LAST:event_btnNotificarActionPerformed
 
     private void btnPesquisarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarRegistrosActionPerformed
@@ -402,55 +419,20 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         }
     }//GEN-LAST:event_btnPesquisarRegistrosActionPerformed
 
-    private void btnAtualizarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarStatusActionPerformed
+    private void btnFinalizarViagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarViagemActionPerformed
         try {
-            Timer tempo = new Timer();
-            ArrayList<Motorista> list = new ArrayList<>();
-            tempo.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    try{
-                        new NMotorista().listar().forEachRemaining(motorista -> {
-                            if(motorista.isStatusMotorista()){
-                                motorista.setStatusDeCorrida(new Random().nextBoolean());
-                                list.add(motorista);
-//                                try {
-//                                    new NMotorista().incluir(motorista);
-//                                } catch (Exception e) {
-//                                    e.printStackTrace();
-//                                }
-                            }
-                        });
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }, 1, 1);
+            Motorista motorista = new NMotorista().
+            consultar(Integer.parseInt(txtCodigoMotorista.getText()));
             
-            list.forEach(moto -> {
-                try {
-                    new NMotorista().incluir(moto);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-            
-            new NMotorista().listar().forEachRemaining(motorista ->{
-                preencherTabela(motorista);
-            });
-            
-            new NViagem().listar().forEachRemaining(viagem ->{
-                viagem.setAvaliacao(new Random().nextInt(3) + 1);
-                try {
-                    new NViagem().incluir(viagem);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
+            motorista.setStatusDeCorrida(false);
+            new NMotorista().incluir(motorista);
+            preencherTabelas();
+            btnFinalizarViagem.setEnabled(false);
+            btnRegistrar.setEnabled(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_btnAtualizarStatusActionPerformed
+    }//GEN-LAST:event_btnFinalizarViagemActionPerformed
 
     private void limpar(){
         txtCodigoViagem.setText("");
@@ -460,12 +442,14 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtCodigoPassageiro.setText("");
         txtNomePassageiro.setText("");
         txtNumeroCel.setText("");
+        btnRegistrar.setEnabled(true);
+        btnFinalizarViagem.setEnabled(false);
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAtualizarStatus;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnFinalizarViagem;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnNotificar;
     private javax.swing.JButton btnPesquisarRegistros;

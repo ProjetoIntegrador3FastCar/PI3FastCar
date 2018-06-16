@@ -20,7 +20,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
     /**
      * Creates new form frmPrincipalCampeonato
      */
-    static Central central;
+    static Central central = new Central();
     
     public FrmPrincipalCentral() {
         initComponents();

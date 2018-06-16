@@ -7,6 +7,7 @@ package apresentacao;
 
 
 //import entidade.Passageiro;
+import static apresentacao.FrmPrincipalCentral.central;
 import entidade.Passageiro;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -219,7 +220,7 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
             Validation.invalidCaracAndLetters(txtNumeroCelular.getText());
             Validation.invalidCaracAndNumbers(txtNome.getText());
 
-            Passageiro passageiro = new Passageiro();
+            Passageiro passageiro = new Passageiro(central);
 
             passageiro.setNome(txtNome.getText());
             passageiro.setNumeroCelular(txtNumeroCelular.getText());
@@ -228,6 +229,7 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
                 passageiro.setCodigoTipo(Integer.parseInt(txtCodigoPassageiro.getText()));
             }
             
+            central.incluirObservador(passageiro);
             new NPassageiro().incluir(passageiro);
 
             limpar();

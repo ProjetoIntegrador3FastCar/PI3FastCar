@@ -77,12 +77,15 @@ public class Passageiro implements Codigo, Comparable<Passageiro>, Observador, M
     public void mostrar() {
         StringBuilder re = new StringBuilder();
         re.append("-------- Dados para avaliação --------\n");
+        re.append("Passageiro: ");
+        re.append(dados.getPassageiro().getNome());
+        re.append("\n");
         re.append("Motorista: ");
         re.append(dados.getMotorista().getNome());
         re.append("\n");
         re.append("Legenda para avaliação: 1 - Ruim; 2 - Regular; 3 - Ótimo\n");
         
-        System.out.println(re.toString());;
+        System.out.println(re.toString());
     }
     
 }

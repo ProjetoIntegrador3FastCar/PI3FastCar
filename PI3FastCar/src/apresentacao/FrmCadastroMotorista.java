@@ -55,8 +55,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
      */
     public FrmCadastroMotorista() {
         initComponents();
-        limpar();
         popularCombo();
+        limpar();
     }
     
     public FrmCadastroMotorista(JDesktopPane principal){
