@@ -99,6 +99,7 @@ public class PViagem extends TPersistencia<Viagem>{
         String sql3 = "SELECT * FROM viagem v INNER JOIN motorista m ON v.cod_motorista = m.codigo_motorista"
                 + " WHERE UPPER(m.nome) LIKE ? ORDER BY codigo_viagem;";
         String sql4 = "SELECT * FROM viagem WHERE cod_motorista = ? ORDER BY codigo_viagem;";
+        String sql5 = "SELECT * FROM viagem WHERE nota_avaliacao = ? ORDER BY codigo_viagem;";
         
         Connection cnn = util.SConexao.getConexao();
         PreparedStatement prd;
@@ -115,8 +116,12 @@ public class PViagem extends TPersistencia<Viagem>{
                 prd = cnn.prepareStatement(sql3);
                 prd.setString(1, "%" + filtro + "%");
                 break;
-            default:
+            case 3:
                 prd = cnn.prepareStatement(sql4);
+                prd.setInt(1, Integer.parseInt(filtro));
+                break;
+            default:
+                prd = cnn.prepareStatement(sql5);
                 prd.setInt(1, Integer.parseInt(filtro));
                 break;
         }

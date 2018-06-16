@@ -196,6 +196,7 @@ public enum StFramePesquisa {
                 cmb.addItem("Data");
                 cmb.addItem("Nome do motorista");
                 cmb.addItem("Código do motorista");
+                cmb.addItem("Nota de avaliação");
             } catch (Exception e) {
                 e.printStackTrace();
             }

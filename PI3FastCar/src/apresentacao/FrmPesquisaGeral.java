@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import negocio.NMotorista;
 import negocio.NPassageiro;
+import negocio.NSolicitacao;
 import util.Validation;
 
 /**
@@ -231,7 +232,8 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                         this.dispose();
                         break;
                     case 2: 
-                        FrmRegistroViagem janelaRv = new FrmRegistroViagem(principal);
+                        FrmRegistroViagem janelaRv = new FrmRegistroViagem(principal, 
+                                new NSolicitacao().consultar(Integer.parseInt(codigo)), true);
                         this.principal.add(janelaRv);
                         janelaRv.setVisible(true);
                         this.dispose();

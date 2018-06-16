@@ -41,7 +41,7 @@ import util.interfaces.TelaPreenchida;
  */
 public class FrmRegistroViagem extends javax.swing.JInternalFrame implements TelaPreenchida<Solicitacao>, TabelaPreenchida<Motorista>{
     private JDesktopPane principal;
-    
+    private boolean cond;
     /**
      * Creates new form frmTipoAssociadoCadoastr
      */
@@ -55,8 +55,9 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         this.principal = principal;
     }
     
-    public FrmRegistroViagem(JDesktopPane principal, Solicitacao inscricao){
+    public FrmRegistroViagem(JDesktopPane principal, Solicitacao inscricao, boolean cond){
         this();
+        this.cond = cond;
         this.principal = principal;
         preencherTela(inscricao);
     }
@@ -96,7 +97,6 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         jLabel2 = new javax.swing.JLabel();
         txtStatusMotorista = new javax.swing.JTextField();
         btnFinalizarViagem = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 
@@ -180,7 +180,6 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtNumeroCel.setEditable(false);
 
         btnNotificar.setText("Notificar Passageiros");
-        btnNotificar.setEnabled(false);
         btnNotificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNotificarActionPerformed(evt);
@@ -199,11 +198,14 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             }
         });
 
-        jButton2.setText("Fechar");
-
         btnExcluir.setText("Excluir");
 
         btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,11 +223,9 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPesquisarRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(87, 87, 87))
+                .addGap(66, 66, 66)
+                .addComponent(btnPesquisarRegistros)
+                .addGap(88, 88, 88))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -270,21 +270,15 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(btnPesquisarRegistros)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCodigoViagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(btnRegistrar)
-                            .addComponent(btnExcluir)
-                            .addComponent(btnLimpar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigoViagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnLimpar)
+                    .addComponent(btnPesquisarRegistros))
+                .addGap(32, 32, 32)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -385,14 +379,6 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtCodigoMotorista.setText(tblMotorista.getValueAt(linha,0).toString());
         txtNomeMotorista.setText(tblMotorista.getValueAt(linha,1).toString());
         txtStatusMotorista.setText(tblMotorista.getValueAt(linha,2).toString());
-        
-        if(tblMotorista.getValueAt(linha,2).toString().equalsIgnoreCase("Em corrida")){
-            btnRegistrar.setEnabled(false);
-            btnFinalizarViagem.setEnabled(true);
-        } else{
-            btnRegistrar.setEnabled(true);
-            btnFinalizarViagem.setEnabled(false);
-        }
     }//GEN-LAST:event_tblMotoristaMousePressed
 
     private void tblPassageiroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPassageiroMousePressed
@@ -421,18 +407,25 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
 
     private void btnFinalizarViagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarViagemActionPerformed
         try {
-            Motorista motorista = new NMotorista().
-            consultar(Integer.parseInt(txtCodigoMotorista.getText()));
-            
-            motorista.setStatusDeCorrida(false);
-            new NMotorista().incluir(motorista);
-            preencherTabelas();
-            btnFinalizarViagem.setEnabled(false);
-            btnRegistrar.setEnabled(true);
+            if(this.cond){
+                Motorista motorista = new NMotorista().
+                        consultar(Integer.parseInt(txtCodigoMotorista.getText()));
+
+                motorista.setStatusDeCorrida(false);
+                new NMotorista().incluir(motorista);
+                preencherTabelas();
+                btnRegistrar.setEnabled(true);
+                btnFinalizarViagem.setEnabled(false);
+            } else 
+                JOptionPane.showMessageDialog(rootPane, "Pesquise pelos registros!");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnFinalizarViagemActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        limpar();
+    }//GEN-LAST:event_btnLimparActionPerformed
 
     private void limpar(){
         txtCodigoViagem.setText("");
@@ -454,7 +447,6 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
     private javax.swing.JButton btnNotificar;
     private javax.swing.JButton btnPesquisarRegistros;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -567,6 +559,8 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtCodigoPassageiro.setText(Integer.toString(obj.getPassageiro().getCodigoPassageiro()));
         txtNomePassageiro.setText(obj.getPassageiro().getNome());
         txtNumeroCel.setText(obj.getPassageiro().getNumeroCelular());
+        btnRegistrar.setEnabled(false);
+        btnFinalizarViagem.setEnabled(true);
     }
     
     /**
