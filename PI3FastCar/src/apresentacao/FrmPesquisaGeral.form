@@ -65,7 +65,7 @@
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Component id="btnPesquisar" min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lblAvisoPesquisa" min="-2" pref="185" max="-2" attributes="0"/>
+                          <Component id="lblAvisoPesquisa" min="-2" pref="226" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="rdAtivar" min="-2" max="-2" attributes="0"/>
@@ -176,6 +176,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblAvisoPesquisa">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="12" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Aviso Pesquisa"/>
       </Properties>
     </Component>

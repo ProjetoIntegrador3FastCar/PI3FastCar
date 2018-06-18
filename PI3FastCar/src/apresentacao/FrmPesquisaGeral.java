@@ -120,6 +120,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
             }
         });
 
+        lblAvisoPesquisa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblAvisoPesquisa.setText("Aviso Pesquisa");
 
         rdAtivar.setText("Ativar");
@@ -148,7 +149,7 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                                 .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(68, 68, 68)
                                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblAvisoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblAvisoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(rdAtivar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

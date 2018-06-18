@@ -59,7 +59,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtNome" min="-2" pref="242" max="-2" attributes="0"/>
-                          <Component id="lblAvisoNome" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="lblAvisoNome" min="-2" pref="250" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtNumeroCelular" min="-2" pref="153" max="-2" attributes="0"/>
-                          <Component id="lblAvisoNumero" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="lblAvisoNumero" min="-2" pref="249" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
