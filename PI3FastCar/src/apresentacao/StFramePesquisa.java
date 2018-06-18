@@ -5,9 +5,11 @@
  */
 package apresentacao;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import persistencia.PMotorista;
@@ -115,7 +117,7 @@ public enum StFramePesquisa {
                 tabela.setModel(new DefaultTableModel(detalhe, getCabecalho()));
                 
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
@@ -126,7 +128,7 @@ public enum StFramePesquisa {
                 cmb.addItem("Nome");
                 cmb.addItem("Número do celular");
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
@@ -147,7 +149,7 @@ public enum StFramePesquisa {
                 tabela.setModel(new DefaultTableModel(detalhe, getCabecalho()));
                 
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
@@ -165,6 +167,7 @@ public enum StFramePesquisa {
         @Override
         public void preencherTabela(JTable tabela) {
             try {
+                DecimalFormat df = new DecimalFormat("#.##");
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Vector detalhe = new Vector<>();
                 
@@ -173,7 +176,7 @@ public enum StFramePesquisa {
                     linha.add(Integer.toString(viagem.getCodigoViagem()));
                     linha.add(viagem.getLocalOrigem());
                     linha.add(viagem.getLocalDestino());
-                    linha.add(Double.toString(viagem.getValorViagem()));
+                    linha.add(df.format(viagem.getValorViagem()));
                     linha.add(sdf.format(viagem.getDataViagem()));
                     linha.add(Integer.toString(viagem.getMotorista().getCodigoMotorista()));
                     linha.add(viagem.getMotorista().getNome());
@@ -185,7 +188,7 @@ public enum StFramePesquisa {
                 tabela.setModel(new DefaultTableModel(detalhe, getCabecalho()));
                 
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
@@ -198,7 +201,7 @@ public enum StFramePesquisa {
                 cmb.addItem("Código do motorista");
                 cmb.addItem("Nota de avaliação");
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
@@ -225,7 +228,7 @@ public enum StFramePesquisa {
                 tabela.setModel(new DefaultTableModel(detalhe, getCabecalho()));
                 
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
@@ -267,7 +270,7 @@ public enum StFramePesquisa {
                 tabela.setModel(new DefaultTableModel(detalhe, getCabecalho()));
                 
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
@@ -278,7 +281,7 @@ public enum StFramePesquisa {
                 cmb.addItem("Modelo");
                 cmb.addItem("Categoria");
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 
@@ -303,7 +306,7 @@ public enum StFramePesquisa {
                 tabela.setModel(new DefaultTableModel(detalhe, getCabecalho()));
                 
             } catch (Exception e) {
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
 

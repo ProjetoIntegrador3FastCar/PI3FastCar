@@ -23,8 +23,8 @@ public class PViagem extends TPersistencia<Viagem>{
     public void incluir(Viagem viagem) throws SQLException{
         
         String sql = "INSERT INTO viagem(local_origem, local_destino,"
-                + " valor_viagem, data_viagem, cod_motorista)"
-                + " VALUES(?, ?, ?, ?, ?);";
+                + " valor_viagem, data_viagem, cod_motorista, nota_avaliacao)"
+                + " VALUES(?, ?, ?, ?, ?, ?);";
         
         String sql2 = "SELECT currval('viagem_codigo_viagem_seq') as codigo";
         
@@ -34,8 +34,8 @@ public class PViagem extends TPersistencia<Viagem>{
     public void alterar(Viagem Viagem) throws SQLException{
         
         
-        String sql = "UPDATE jogador SET local_origem = ? , local_destino = ?,"
-                + " valor_viagem = ?, data_viagem = ?, cod_motorista = ?"
+        String sql = "UPDATE viagem SET local_origem = ? , local_destino = ?,"
+                + " valor_viagem = ?, data_viagem = ?, cod_motorista = ?, nota_avaliacao = ?"
                 + " WHERE codigo_viagem = ?;";
         
         this.alterarOuIncluir(Viagem, sql);
@@ -148,9 +148,10 @@ public class PViagem extends TPersistencia<Viagem>{
         prd.setDouble(3, viagem.getValorViagem());
         prd.setDate(4, viagem.getDataViagem());
         prd.setInt(5, viagem.getMotorista().getCodigoMotorista());
+        prd.setInt(6, viagem.getAvaliacao());
         
         if(viagem.getCodigoViagem()> 0)
-            prd.setInt(6, viagem.getCodigoViagem());
+            prd.setInt(7, viagem.getCodigoViagem());
         
         return prd;
     }

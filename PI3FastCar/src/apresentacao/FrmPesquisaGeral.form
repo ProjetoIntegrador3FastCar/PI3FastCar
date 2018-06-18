@@ -56,17 +56,19 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="cmbFiltro" alignment="0" min="-2" pref="209" max="-2" attributes="0"/>
-                  <Component id="btnAtivar" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="txtPesquisa" min="-2" pref="198" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      <Component id="btnPesquisar" min="-2" pref="118" max="-2" attributes="0"/>
+                      <Component id="cmbFiltro" min="-2" pref="209" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="txtPesquisa" min="-2" pref="198" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Component id="btnPesquisar" min="-2" pref="118" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblAvisoPesquisa" min="-2" pref="185" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="lblAvisoPesquisa" min="-2" pref="185" max="-2" attributes="0"/>
+                  <Component id="rdAtivar" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -84,10 +86,10 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnAtivar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdAtivar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -95,7 +97,7 @@
                       <Component id="lblAvisoPesquisa" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="293" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="btnFechar" min="-2" max="-2" attributes="0"/>
@@ -129,10 +131,11 @@
               <Table columnCount="0" rowCount="4"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0"/>
+              <TableColumnModel selectionModel="1"/>
             </Property>
+            <Property name="columnSelectionAllowed" type="boolean" value="true"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
           <Events>
@@ -161,14 +164,6 @@
         <Property name="text" type="java.lang.String" value="Mouse:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="btnAtivar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Desativado"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtivarActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JTextField" name="txtPesquisa">
     </Component>
     <Component class="javax.swing.JButton" name="btnPesquisar">
@@ -182,6 +177,11 @@
     <Component class="javax.swing.JLabel" name="lblAvisoPesquisa">
       <Properties>
         <Property name="text" type="java.lang.String" value="Aviso Pesquisa"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rdAtivar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ativar"/>
       </Properties>
     </Component>
   </SubComponents>

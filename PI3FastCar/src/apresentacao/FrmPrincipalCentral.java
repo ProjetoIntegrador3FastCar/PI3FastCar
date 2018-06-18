@@ -8,7 +8,7 @@ package apresentacao;
 
 
 
-//import entidade.Usuario;
+
 import entidade.observer.Central;
 import javax.swing.JOptionPane;
 
@@ -26,11 +26,6 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
-    
-//    public FrmPrincipalCentral(Usuario usuarioSis){
-//        this();
-//        FrmPrincipalCentral.usuarioSis = usuarioSis;
-//    }
     
     private void sair(){
         try{
@@ -64,7 +59,6 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
         mnuCadastroPassageiro = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuRegistroViagens = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         mnuSair = new javax.swing.JMenuItem();
 
@@ -116,9 +110,6 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu4.setText("Relatórios");
-        jMenuBar1.add(jMenu4);
-
         jMenu3.setText("Sair");
 
         mnuSair.setText("Sair");
@@ -158,8 +149,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
             this.pnlPrincipal.add(frm);
             frm.setVisible(true);
         } catch (Exception e) {
-            e.printStackTrace();
-//            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_mnuCadastroMotoristaActionPerformed
 
@@ -169,7 +159,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
             this.pnlPrincipal.add(frm);
             frm.setVisible(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_mnuCadastroPassageiroActionPerformed
 
@@ -179,7 +169,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
             this.pnlPrincipal.add(frm);
             frm.setVisible(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_mnuRegistroViagensActionPerformed
 
@@ -223,7 +213,6 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem mnuCadastroMotorista;

@@ -10,6 +10,7 @@ package apresentacao;
 
 import entidade.Motorista;
 import entidade.Veiculo;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
@@ -29,15 +30,11 @@ import util.interfaces.TelaPreenchida;
 public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements ComboBox, TelaPreenchida<Motorista>{
     private JDesktopPane principal;
     
-    
-    
     private void limpar(){
         txtStatusMotorista.setText("");
         txtCodigoMotorista.setText("");
         txtNome.setText("");
         txtCpf.setText("");
-        cmbCategoria.setSelectedIndex(0);
-        cmbCategoria.setEnabled(true);
         txtCodigoVeiculo.setText("");
         txtPlaca.setText("");
         txtCor.setText("");
@@ -55,8 +52,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
      */
     public FrmCadastroMotorista() {
         initComponents();
-        popularCombo();
         limpar();
+        popularCombo();
     }
     
     public FrmCadastroMotorista(JDesktopPane principal){
@@ -386,7 +383,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             motorista.setStatusMotorista(true);
             motorista.setStatusDeCorrida(false);
 
-            veiculo.setCategoria(CategoriaAbstrata.getInstance(cmbCategoria.getSelectedIndex()));
+            veiculo.setCategoria(CategoriaAbstrata.getInstance(cmbCategoria.getSelectedIndex()-1));
             veiculo.setPlaca(txtPlaca.getText());
             veiculo.setCor(txtCor.getText());
             veiculo.setModelo(txtModelo.getText());
@@ -406,9 +403,9 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             new NMotorista().incluir(motorista);
             
             limpar();
-            JOptionPane.showMessageDialog(rootPane, "Motorista cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Motorista cadastrado com sucesso!");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -418,6 +415,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         limpar();
+        cmbCategoria.setSelectedIndex(0);
+        cmbCategoria.setEnabled(true);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -427,7 +426,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             janela.setVisible(true);
             this.dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
@@ -447,14 +446,11 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             
             if(resposta == JOptionPane.YES_OPTION){
                 Motorista motorista = new NMotorista().consultar(Integer.parseInt(txtCodigoMotorista.getText()));
-//                System.out.println(motorista.getNome());
-//                System.out.println(motorista.isStatusMotorista());
+                
                 if(motorista.isStatusMotorista())
                     motorista.setStatusMotorista(false);
                 else
                     motorista.setStatusMotorista(true);
-                
-//                System.out.println(motorista.isStatusMotorista());
                 
                 if(txtCodigoMotorista.getText() != null && !txtCodigoMotorista.getText().isEmpty()){
                     motorista.setCodigoTipo(Integer.parseInt(txtCodigoMotorista.getText()));
@@ -465,8 +461,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
                         "Operação efetuada com sucesso!");
                 limpar();
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        } catch (HeadlessException | NumberFormatException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnAlterarStatusActionPerformed
 
@@ -476,7 +472,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             principal.add(janela);
             janela.setVisible(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnConsultarVeiculoActionPerformed
 
@@ -551,32 +547,26 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
     @Override
     public void popularCombo() {
         try {
-            cmbCategoria.removeAllItems();
             CategoriaAbstrata.getListaDeCategorias().forEachRemaining(categoria ->{
                 cmbCategoria.addItem(categoria.getDescricao());
             });
         } catch (SQLException ex) {
-            ex.printStackTrace();
-//            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
     
     @Override
     public void preencherTela(Motorista motorista) {
-        try {
-            System.out.println(motorista.getVeiculo().getCategoria().getDescricao());
-            txtCodigoMotorista.setText(Integer.toString(motorista.getCodigoMotorista()));
-            txtStatusMotorista.setText((motorista.isStatusMotorista()) ? "Ativo" : "Desativado");
-            txtNome.setText(motorista.getNome());
-            txtCpf.setText(motorista.getCpf());
-            txtCodigoVeiculo.setText(Integer.toString(motorista.getVeiculo().getCodigoVeiculo()));
-//            cmbCategoria.setSelectedItem(motorista.getVeiculo().getCategoria().getDescricao());
-            txtPlaca.setText(motorista.getVeiculo().getPlaca());
-            txtCor.setText(motorista.getVeiculo().getCor());
-            txtModelo.setText(motorista.getVeiculo().getModelo());
-            btnAlterarStatus.setEnabled(true);
-        } catch (Exception e) {
-        }
+        txtCodigoMotorista.setText(Integer.toString(motorista.getCodigoMotorista()));
+        txtStatusMotorista.setText((motorista.isStatusMotorista()) ? "Ativo" : "Desativado");
+        txtNome.setText(motorista.getNome());
+        txtCpf.setText(motorista.getCpf());
+        txtCodigoVeiculo.setText(Integer.toString(motorista.getVeiculo().getCodigoVeiculo()));
+        cmbCategoria.setSelectedItem(motorista.getVeiculo().getCategoria().getDescricao());
+        txtPlaca.setText(motorista.getVeiculo().getPlaca());
+        txtCor.setText(motorista.getVeiculo().getCor());
+        txtModelo.setText(motorista.getVeiculo().getModelo());
+        btnAlterarStatus.setEnabled(true);
     }
 
     

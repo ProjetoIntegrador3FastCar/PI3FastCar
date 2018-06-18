@@ -62,7 +62,6 @@ public abstract class TPersistencia<T>{
             }
             cnn.commit();
         }catch(Exception e){
-            e.printStackTrace();
             cnn.rollback();
         }
         cnn.close();

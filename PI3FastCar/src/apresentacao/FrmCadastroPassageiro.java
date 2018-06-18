@@ -6,7 +6,7 @@
 package apresentacao;
 
 
-//import entidade.Passageiro;
+
 import static apresentacao.FrmPrincipalCentral.central;
 import entidade.Passageiro;
 import java.util.ArrayList;
@@ -233,9 +233,9 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
             new NPassageiro().incluir(passageiro);
 
             limpar();
-            JOptionPane.showMessageDialog(rootPane, "Passageiro cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Passageiro cadastrado com sucesso!");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
         
@@ -256,7 +256,7 @@ public class FrmCadastroPassageiro extends javax.swing.JInternalFrame implements
             janela.setVisible(true);
             this.dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 

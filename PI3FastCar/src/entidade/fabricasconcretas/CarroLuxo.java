@@ -29,6 +29,4 @@ public class CarroLuxo extends CategoriaAbstrata{
             return null;
         }
     }
-    
-    
 }

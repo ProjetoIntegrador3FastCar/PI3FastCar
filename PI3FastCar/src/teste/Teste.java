@@ -5,32 +5,49 @@
  */
 package teste;
 
-import entidade.Motorista;
-import entidade.Passageiro;
-import entidade.Solicitacao;
-import entidade.Viagem;
-import entidade.observer.Central;
-import entidade.observer.DadosDaViagem;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Random;
-import javax.swing.JOptionPane;
-import util.estruturadedados.Lista;
-import util.Validacao;
-import util.Validation;
+
+import entidade.fabricasconcretas.StCategoria;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
  * @author Kleiton
  */
 public class Teste {
-
+    int se = 0;
     /**
      * @param args the command line arguments
      */
+    Timer timer = new Timer();
+    TimerTask timerT = new TimerTask(){
+        public void run(){
+            se++;
+            System.out.printf("%2d\n", se);
+            if(se == 10){
+                timer.cancel();
+                timer.purge();
+            }
+        }
+    };
+    
+    public void start(){
+        timer.scheduleAtFixedRate(timerT, 1000, 1000);
+    }
+    
+    public void stop(){
+        
+    }
+    
     public static void main(String[] args) throws Exception {
         try {
+            for (int i = 0; i < StCategoria.values().length; i++) {
+                System.out.println(StCategoria.values()[i].getInstance().getDescricao());
+            }
+            
+//            System.out.println(new Random().nextInt(3)+1);
+//            Teste test = new Teste();
+//            test.start();
             
 //            Central central = new Central();
 //            Passageiro p1 = new Passageiro(central);

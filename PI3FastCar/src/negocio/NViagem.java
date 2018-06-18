@@ -12,7 +12,7 @@ import persistencia.PViagem;
 
 /**
  *
- * @author rodri
+ * @author Rodrigo Leite
  */
 public class NViagem {
     public void incluir(Viagem viagem) throws SQLException{

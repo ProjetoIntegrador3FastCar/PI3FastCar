@@ -13,6 +13,7 @@ import entidade.Solicitacao;
 import entidade.Viagem;
 import entidade.observer.DadosDaViagem;
 import static apresentacao.FrmPrincipalCentral.central;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -39,12 +40,10 @@ import util.interfaces.TelaPreenchida;
  *
  * @author Kleiton
  */
-public class FrmRegistroViagem extends javax.swing.JInternalFrame implements TelaPreenchida<Solicitacao>, TabelaPreenchida<Motorista>{
+public class FrmRegistroViagem extends javax.swing.JInternalFrame implements TelaPreenchida<Solicitacao>{
     private JDesktopPane principal;
     private boolean cond;
-    /**
-     * Creates new form frmTipoAssociadoCadoastr
-     */
+    
     public FrmRegistroViagem() {
         initComponents();
         preencherTabelas();
@@ -55,11 +54,11 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         this.principal = principal;
     }
     
-    public FrmRegistroViagem(JDesktopPane principal, Solicitacao inscricao, boolean cond){
+    public FrmRegistroViagem(JDesktopPane principal, Solicitacao solicit, boolean cond){
         this();
         this.cond = cond;
         this.principal = principal;
-        preencherTela(inscricao);
+        preencherTela(solicit);
     }
 
 
@@ -180,6 +179,7 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtNumeroCel.setEditable(false);
 
         btnNotificar.setText("Notificar Passageiros");
+        btnNotificar.setEnabled(false);
         btnNotificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNotificarActionPerformed(evt);
@@ -330,9 +330,6 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             
             String localOrigem = JOptionPane.showInputDialog("Local de origem:");
             String localDestino = JOptionPane.showInputDialog("Local de destino:");
-//            Validation.invalidSpecCaracters("", title);
-//            Validation.invalidCaracters(localOrigem);
-//            Validation.invalidCaracters(localDestino);
             
             viagem.setMotorista(motorista);
             viagem.setLocalOrigem(localOrigem);
@@ -348,7 +345,8 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             viagem.setDataViagem(new java.sql.Date(System.currentTimeMillis()));
             
             int op = JOptionPane.showOptionDialog(rootPane, "Forma de pagamento", "Pagamento", 
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Cartão de Crédito", "Dinheiro"}, 0);
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, 
+                    null, new Object[]{"Cartão de Crédito", "Dinheiro"}, 0);
             if(op == -1) return;
             solicitacao.setFormaDePagamento((op == 0) ? "Cartão de Crédito": "Dinheiro");
             motorista.setStatusDeCorrida(true);
@@ -363,12 +361,10 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             
             new NViagem().incluir(viagem);
             new NSolicitacao().incluir(solicitacao);
-//            this.solicitacao = solicit;
             JOptionPane.showMessageDialog(null, "Viagem registrada com sucesso!");
             preencherTabelas();
             limpar();
         } catch (Exception e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -389,8 +385,16 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
     }//GEN-LAST:event_tblPassageiroMousePressed
 
     private void btnNotificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificarActionPerformed
-        atualizar();
-        btnNotificar.setEnabled(false);
+        try {
+            atualizar();
+            Viagem viagem = new NViagem().
+                        consultar(Integer.parseInt(txtCodigoViagem.getText()));
+            viagem.setAvaliacao(new Random().nextInt(3)+1);
+            new NViagem().incluir(viagem);
+            btnNotificar.setEnabled(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_btnNotificarActionPerformed
 
     private void btnPesquisarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarRegistrosActionPerformed
@@ -400,26 +404,25 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             janela.setVisible(true);
             this.dispose();
         } catch (Exception e) {
-//            e.printStackTrace();
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnPesquisarRegistrosActionPerformed
 
     private void btnFinalizarViagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarViagemActionPerformed
         try {
             if(this.cond){
-                Motorista motorista = new NMotorista().
-                        consultar(Integer.parseInt(txtCodigoMotorista.getText()));
-
-                motorista.setStatusDeCorrida(false);
-                new NMotorista().incluir(motorista);
+                Viagem viagem = new NViagem().
+                        consultar(Integer.parseInt(txtCodigoViagem.getText()));
+                viagem.getMotorista().setStatusDeCorrida(false);
+                new NMotorista().incluir(viagem.getMotorista());
                 preencherTabelas();
                 btnRegistrar.setEnabled(true);
+                btnNotificar.setEnabled(true);
                 btnFinalizarViagem.setEnabled(false);
             } else 
-                JOptionPane.showMessageDialog(rootPane, "Pesquise pelos registros!");
+                JOptionPane.showMessageDialog(null, "Pesquise pelos registros!");
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnFinalizarViagemActionPerformed
 
@@ -471,9 +474,7 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
     // End of variables declaration//GEN-END:variables
 
     
-    /**
-     * Preenche as tabelas na construção da janela
-     */
+    
     private void preencherTabelas(){
         try {
             Vector detalheM = new Vector<>();
@@ -531,7 +532,6 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
                 central.setDados(dados);
             });
         } catch (Exception e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
@@ -561,34 +561,5 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtNumeroCel.setText(obj.getPassageiro().getNumeroCelular());
         btnRegistrar.setEnabled(false);
         btnFinalizarViagem.setEnabled(true);
-    }
-    
-    /**
-     * Preenche na atualização da tabela, na ação do botão "Atualizar Motoristas"
-     * @param obj Motorista a ser atualizado
-     */
-    @Override
-    public void preencherTabela(Motorista obj) {
-        try {
-            Vector detalheM = new Vector<>();
-            
-            new NMotorista().listarPorFiltro(0, 
-                    Integer.toString(obj.getCodigoMotorista())).
-                    forEachRemaining(motorista ->{
-                if(motorista.isStatusMotorista()){
-                    Vector<String> linha = new Vector<>();
-                    linha.add(Integer.toString(motorista.getCodigoMotorista()));
-                    linha.add(motorista.getNome());
-                    linha.add((motorista.isStatusDeCorrida()) ? "Em corrida" : "Disponível");
-                    detalheM.add(linha);
-                }
-            });
-            
-            tblMotorista.setModel(new DefaultTableModel(detalheM, tabelaMotorista()));
-            
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

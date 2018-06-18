@@ -31,5 +31,4 @@ public class CarroSimples extends CategoriaAbstrata{
             return null;
         }
     }
-    
 }
