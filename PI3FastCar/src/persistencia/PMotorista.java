@@ -91,7 +91,7 @@ public class PMotorista extends TPersistencia<Motorista>{
     public Iterator<Motorista> listarPorFiltro(int opcao, String string) throws SQLException {
         String sql = "SELECT * FROM motorista WHERE codigo_motorista = ? ORDER BY codigo_motorista;";
         String sql2 = "SELECT * FROM motorista WHERE UPPER(nome) LIKE ? ORDER BY codigo_motorista;";
-        String sql3 = "SELECT * FROM motorista WHERE cpf = ? ORDER BY codigo_motorista;";
+        String sql3 = "SELECT * FROM motorista WHERE cpf LIKE ? ORDER BY codigo_motorista;";
         
         Connection cnn = util.SConexao.getConexao();
         PreparedStatement prd;
@@ -106,7 +106,7 @@ public class PMotorista extends TPersistencia<Motorista>{
                 break;
             default:
                 prd = cnn.prepareStatement(sql3);
-                prd.setInt(1, Integer.parseInt(string));
+                prd.setString(1, "%" + string + "%");
                 break;
         }
         

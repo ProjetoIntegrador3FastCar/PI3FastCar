@@ -64,7 +64,7 @@ public class PVeiculo extends TPersistencia<Veiculo>{
         ResultSet rs = prd.executeQuery();
         if(rs.next()){
             return new Veiculo(rs.getInt(1), rs.getString(2), rs.getString(3), 
-                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5)));
+                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5)-1));
         }
         
         return null;
@@ -82,7 +82,7 @@ public class PVeiculo extends TPersistencia<Veiculo>{
         
         while(rs.next()){
             lista.add(new Veiculo(rs.getInt(1), rs.getString(2), rs.getString(3), 
-                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5))));
+                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5)-1)));
         }
         
         return lista.iterator();
@@ -118,7 +118,7 @@ public class PVeiculo extends TPersistencia<Veiculo>{
         
         while(rs.next()){
             lista.add(new Veiculo(rs.getInt(1), rs.getString(2), rs.getString(3), 
-                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5))));
+                    rs.getString(4), CategoriaAbstrata.getInstance(rs.getInt(5)-1)));
         }
         
         return lista.iterator();

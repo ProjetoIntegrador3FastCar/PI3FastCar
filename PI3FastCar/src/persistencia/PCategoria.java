@@ -36,7 +36,7 @@ public class PCategoria extends TPersistencia<CategoriaAbstrata>{
 
     @Override
     public Iterator<CategoriaAbstrata> listar() throws SQLException {
-        String sql = "SELECT * FROM categoria_veiculo ORDER BY codigo_categoria;";
+        String sql = "SELECT codigo_categoria FROM categoria_veiculo ORDER BY codigo_categoria;";
         Connection cnn = util.SConexao.getConexao();
         Statement prd = cnn.createStatement();
         
@@ -62,4 +62,20 @@ public class PCategoria extends TPersistencia<CategoriaAbstrata>{
         return null;
     }
     
+    public ArrayList<String> listarDescricao() throws SQLException{
+        
+        String sql = "SELECT descricao FROM categoria_veiculo ORDER BY codigo_categoria;";
+        
+        Connection cnn = util.SConexao.getConexao();
+        Statement prd = cnn.createStatement();
+        
+        ResultSet rs = prd.executeQuery(sql);
+        ArrayList<String> lista = new ArrayList<>();
+        
+        while(rs.next()){
+            lista.add(rs.getString("descricao"));
+        }
+        
+        return lista;
+    }
 }

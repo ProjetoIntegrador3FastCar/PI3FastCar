@@ -331,6 +331,14 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             String localOrigem = JOptionPane.showInputDialog("Local de origem:");
             String localDestino = JOptionPane.showInputDialog("Local de destino:");
             
+            if(localOrigem.isEmpty() || localDestino.isEmpty()){
+                while(localOrigem.isEmpty() || localDestino.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "Digite o endereço!");
+                    localOrigem = JOptionPane.showInputDialog("Local de origem:");
+                    localDestino = JOptionPane.showInputDialog("Local de destino:");
+                }
+            }
+            
             viagem.setMotorista(motorista);
             viagem.setLocalOrigem(localOrigem);
             viagem.setLocalDestino(localDestino);
@@ -364,8 +372,10 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             JOptionPane.showMessageDialog(null, "Viagem registrada com sucesso!");
             preencherTabelas();
             limpar();
+        } catch (NullPointerException e) {
+            
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -375,6 +385,11 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
         txtCodigoMotorista.setText(tblMotorista.getValueAt(linha,0).toString());
         txtNomeMotorista.setText(tblMotorista.getValueAt(linha,1).toString());
         txtStatusMotorista.setText(tblMotorista.getValueAt(linha,2).toString());
+        
+        if(tblMotorista.getValueAt(linha,2).toString().equalsIgnoreCase("Em corrida")){
+            btnRegistrar.setEnabled(false);
+        } else 
+            btnRegistrar.setEnabled(true);
     }//GEN-LAST:event_tblMotoristaMousePressed
 
     private void tblPassageiroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPassageiroMousePressed
@@ -392,6 +407,7 @@ public class FrmRegistroViagem extends javax.swing.JInternalFrame implements Tel
             viagem.setAvaliacao(new Random().nextInt(3)+1);
             new NViagem().incluir(viagem);
             btnNotificar.setEnabled(false);
+            limpar();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

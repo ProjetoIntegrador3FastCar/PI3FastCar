@@ -149,6 +149,7 @@ public class FrmPrincipalCentral extends javax.swing.JFrame {
             this.pnlPrincipal.add(frm);
             frm.setVisible(true);
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_mnuCadastroMotoristaActionPerformed

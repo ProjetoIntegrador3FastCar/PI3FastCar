@@ -6,7 +6,7 @@
 package apresentacao;
 
 
-//import entidade.Usuario;
+
 
 import entidade.Motorista;
 import entidade.Veiculo;
@@ -21,7 +21,6 @@ import util.Validation;
 import util.fabricaabstrata.CategoriaAbstrata;
 import util.interfaces.ComboBox;
 import util.interfaces.TelaPreenchida;
-//import negocio.UsuarioSisBR;
 
 /**
  *
@@ -383,7 +382,8 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             motorista.setStatusMotorista(true);
             motorista.setStatusDeCorrida(false);
 
-            veiculo.setCategoria(CategoriaAbstrata.getInstance(cmbCategoria.getSelectedIndex()-1));
+            veiculo.setCategoria(CategoriaAbstrata.getInstance(cmbCategoria.getSelectedIndex()));
+//            System.out.println(CategoriaAbstrata.getInstance(cmbCategoria.getSelectedIndex()).getCodCategoria());
             veiculo.setPlaca(txtPlaca.getText());
             veiculo.setCor(txtCor.getText());
             veiculo.setModelo(txtModelo.getText());
@@ -401,7 +401,7 @@ public class FrmCadastroMotorista extends javax.swing.JInternalFrame implements 
             }
             
             new NMotorista().incluir(motorista);
-            
+//            
             limpar();
             JOptionPane.showMessageDialog(null, "Motorista cadastrado com sucesso!");
         } catch (Exception e) {

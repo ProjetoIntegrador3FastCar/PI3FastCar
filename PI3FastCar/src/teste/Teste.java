@@ -9,6 +9,7 @@ package teste;
 import entidade.fabricasconcretas.StCategoria;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,9 +42,13 @@ public class Teste {
     
     public static void main(String[] args) throws Exception {
         try {
-            for (int i = 0; i < StCategoria.values().length; i++) {
-                System.out.println(StCategoria.values()[i].getInstance().getDescricao());
-            }
+            String localDestino = JOptionPane.showInputDialog("Local de destino:");
+            
+            if(localDestino.trim().isEmpty())
+                System.out.println("Está vazio");
+//            for (int i = 0; i < StCategoria.values().length; i++) {
+//                System.out.println(StCategoria.values()[i].getInstance().getCodCategoria());
+//            }
             
 //            System.out.println(new Random().nextInt(3)+1);
 //            Teste test = new Teste();
@@ -75,8 +80,8 @@ public class Teste {
 //            System.out.println();
 //            central.removerObservador(p1);
 //            System.out.println(central.listarObservador().mostrarObjeto(0));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println("Nulo");
         }
 //        central.notificarObservador();
 //        Motorista moto = new Motorista();

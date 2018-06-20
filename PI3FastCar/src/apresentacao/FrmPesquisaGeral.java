@@ -239,7 +239,9 @@ public class FrmPesquisaGeral extends javax.swing.JInternalFrame {
                     default: 
                         break;
                 }
-            }else{}
+            }else{
+                JOptionPane.showMessageDialog(null, "Ative o mouse!");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
